@@ -6,9 +6,17 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameSettingViewController: UIViewController {
 
+   
+    
+    @IBOutlet weak var muteButton: UIButton!
+    var isMute = false
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -16,6 +24,18 @@ class GameSettingViewController: UIViewController {
     }
     
 
+    
+    @IBAction func changeMuteStatus(_ sender: Any) {
+        if !isMute {
+            muteButton.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
+         isMute = true
+            appDelegate.music?.stop()
+        } else {
+            muteButton.setImage(UIImage(systemName: "speaker.circle.fill"), for: .normal)
+            isMute = false
+            appDelegate.music?.play()
+        }
+    }
     /*
     // MARK: - Navigation
 

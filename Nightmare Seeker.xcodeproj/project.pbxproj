@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5787A4E2C32F4C100292ED0 /* GameAddUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5787A4D2C32F4C100292ED0 /* GameAddUsernameViewController.swift */; };
+		E5787A502C32FB6100292ED0 /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5787A4F2C32FB6100292ED0 /* bgmusic.mp3 */; };
 		F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9802C2D32BF00FC983B /* AppDelegate.swift */; };
 		F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
 		F513B9852C2D32BF00FC983B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9842C2D32BF00FC983B /* Actions.sks */; };
@@ -24,6 +26,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E5787A4D2C32F4C100292ED0 /* GameAddUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddUsernameViewController.swift; sourceTree = "<group>"; };
+		E5787A4F2C32FB6100292ED0 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
 		F513B97D2C2D32BF00FC983B /* Nightmare Seeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nightmare Seeker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F513B9802C2D32BF00FC983B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F513B9822C2D32BF00FC983B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -80,10 +84,12 @@
 				F513B9882C2D32BF00FC983B /* GameViewController.swift */,
 				F54121762C32BB6A0079DECF /* GameIntroViewController.swift */,
 				F54121782C32BCE40079DECF /* GamePlayViewController.swift */,
+				E5787A4D2C32F4C100292ED0 /* GameAddUsernameViewController.swift */,
+				F513B9972C2D340600FC983B /* MainMenuViewController.swift */,
 				F513B98A2C2D32BF00FC983B /* Main.storyboard */,
 				F513B98D2C2D32C000FC983B /* Assets.xcassets */,
 				F513B98F2C2D32C000FC983B /* LaunchScreen.storyboard */,
-				F513B9972C2D340600FC983B /* MainMenuViewController.swift */,
+				E5787A4F2C32FB6100292ED0 /* bgmusic.mp3 */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -160,6 +166,7 @@
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
 				F513B9852C2D32BF00FC983B /* Actions.sks in Resources */,
 				F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */,
+				E5787A502C32FB6100292ED0 /* bgmusic.mp3 in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,6 +185,7 @@
 				F54121772C32BB6A0079DECF /* GameIntroViewController.swift in Sources */,
 				F513B9892C2D32BF00FC983B /* GameViewController.swift in Sources */,
 				F54121792C32BCE40079DECF /* GamePlayViewController.swift in Sources */,
+				E5787A4E2C32F4C100292ED0 /* GameAddUsernameViewController.swift in Sources */,
 				F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
