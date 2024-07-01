@@ -9,13 +9,28 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
+    @IBOutlet weak var muteButton: UIButton!
+    var isMute = false
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func changeButton(_ sender: Any) {
+        if !isMute {
+            muteButton.setImage(UIImage(systemName: "speaker.slash.circle.fill"), for:.normal)
+            isMute = true
+        } else {
+           muteButton.setImage(UIImage(systemName: "speaker.circle.fill"), for:.normal)
+            isMute = false
+        }
+    }
+    
+//    IBOutlet
+    @IBAction func buttonAction(_ sender: Any) {
+        
+    }
     /*
     // MARK: - Navigation
 

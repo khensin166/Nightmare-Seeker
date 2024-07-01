@@ -15,6 +15,12 @@
 		F513B98C2C2D32BF00FC983B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F513B98B2C2D32BF00FC983B /* Base */; };
 		F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F513B98D2C2D32C000FC983B /* Assets.xcassets */; };
 		F513B9912C2D32C000FC983B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F513B9902C2D32C000FC983B /* Base */; };
+		F513B9982C2D340600FC983B /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9972C2D340600FC983B /* MainMenuViewController.swift */; };
+		F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121742C32BAB40079DECF /* GameSettingViewController.swift */; };
+		F54121772C32BB6A0079DECF /* GameIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121762C32BB6A0079DECF /* GameIntroViewController.swift */; };
+		F54121792C32BCE40079DECF /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121782C32BCE40079DECF /* GamePlayViewController.swift */; };
+		F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5795B152C2D507900B22D2C /* OverLayerPopUpController.xib */; };
+		F5795B172C2D507900B22D2C /* OverLayerPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5795B142C2D507900B22D2C /* OverLayerPopUpController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +33,12 @@
 		F513B98B2C2D32BF00FC983B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F513B98D2C2D32C000FC983B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F513B9902C2D32C000FC983B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F513B9972C2D340600FC983B /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		F54121742C32BAB40079DECF /* GameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingViewController.swift; sourceTree = "<group>"; };
+		F54121762C32BB6A0079DECF /* GameIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIntroViewController.swift; sourceTree = "<group>"; };
+		F54121782C32BCE40079DECF /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
+		F5795B142C2D507900B22D2C /* OverLayerPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverLayerPopUpController.swift; sourceTree = "<group>"; };
+		F5795B152C2D507900B22D2C /* OverLayerPopUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverLayerPopUpController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,16 +71,30 @@
 		F513B97F2C2D32BF00FC983B /* Nightmare Seeker */ = {
 			isa = PBXGroup;
 			children = (
+				F5795B132C2D503800B22D2C /* OverLayerPopUp */,
 				F513B9802C2D32BF00FC983B /* AppDelegate.swift */,
 				F513B9822C2D32BF00FC983B /* GameScene.sks */,
 				F513B9842C2D32BF00FC983B /* Actions.sks */,
+				F54121742C32BAB40079DECF /* GameSettingViewController.swift */,
 				F513B9862C2D32BF00FC983B /* GameScene.swift */,
 				F513B9882C2D32BF00FC983B /* GameViewController.swift */,
+				F54121762C32BB6A0079DECF /* GameIntroViewController.swift */,
+				F54121782C32BCE40079DECF /* GamePlayViewController.swift */,
 				F513B98A2C2D32BF00FC983B /* Main.storyboard */,
 				F513B98D2C2D32C000FC983B /* Assets.xcassets */,
 				F513B98F2C2D32C000FC983B /* LaunchScreen.storyboard */,
+				F513B9972C2D340600FC983B /* MainMenuViewController.swift */,
 			);
 			path = "Nightmare Seeker";
+			sourceTree = "<group>";
+		};
+		F5795B132C2D503800B22D2C /* OverLayerPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				F5795B142C2D507900B22D2C /* OverLayerPopUpController.swift */,
+				F5795B152C2D507900B22D2C /* OverLayerPopUpController.xib */,
+			);
+			path = OverLayerPopUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -133,6 +159,7 @@
 				F513B98C2C2D32BF00FC983B /* Base in Resources */,
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
 				F513B9852C2D32BF00FC983B /* Actions.sks in Resources */,
+				F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -144,8 +171,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F513B9982C2D340600FC983B /* MainMenuViewController.swift in Sources */,
 				F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */,
+				F5795B172C2D507900B22D2C /* OverLayerPopUpController.swift in Sources */,
+				F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */,
+				F54121772C32BB6A0079DECF /* GameIntroViewController.swift in Sources */,
 				F513B9892C2D32BF00FC983B /* GameViewController.swift in Sources */,
+				F54121792C32BCE40079DECF /* GamePlayViewController.swift in Sources */,
 				F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -304,8 +336,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -332,8 +363,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarHidden = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
