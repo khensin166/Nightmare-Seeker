@@ -12,30 +12,44 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
-    
-    override func didMove(to view: SKView) {
+    private var person_walk_1: SKSpriteNode!
         
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
-        
-        // Create shape node to use during mouse interaction
-        let w = (self.size.width + self.size.height) * 0.05
-        self.spinnyNode = SKShapeNode.init(rectOf: CGSize.init(width: w, height: w), cornerRadius: w * 0.3)
-        
-        if let spinnyNode = self.spinnyNode {
-            spinnyNode.lineWidth = 2.5
+        override func didMove(to view: SKView) {
+            // Pastikan untuk memanggil method super
+            super.didMove(to: view)
             
-            spinnyNode.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)))
-            spinnyNode.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-                                              SKAction.fadeOut(withDuration: 0.5),
-                                              SKAction.removeFromParent()]))
+            // Ambil node background dari .sks jika ada
+            if let backgroundNode = self.childNode(withName: "lorong") as? SKSpriteNode {
+                backgroundNode.zPosition = -1  // Pastikan background berada di belakang
+            }
+            
+            // Ambil node person dari .sks jika ada, jika tidak buat baru
+            if let personNode = self.childNode(withName: "person_walk_1") as? SKSpriteNode {
+                person_walk_1 = personNode
+            } else {
+                let personTexture = SKTexture(imageNamed: "person_walk_1")
+                person_walk_1 = SKSpriteNode(texture: personTexture)
+                person_walk_1.name = "person_walk_1"
+                person_walk_1.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
+                self.addChild(person_walk_1)
+            }
+            
+            // Mulai animasi gerakan person
+            startMoving()
         }
-    }
-    
+        
+        private func startMoving() {
+            // Define movement action
+            let moveRight = SKAction.moveBy(x: 100, y: 0, duration: 1)
+            let moveLeft = SKAction.moveBy(x: -100, y: 0, duration: 1)
+            let sequence = SKAction.sequence([moveRight, moveLeft])
+            let repeatAction = SKAction.repeatForever(sequence)
+            
+            // Run the movement action
+            person_walk_1.run(repeatAction)
+        }
+
+
     
     func touchDown(atPoint pos : CGPoint) {
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
