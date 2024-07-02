@@ -12,7 +12,7 @@ import SpriteKit
         
         override func viewDidLoad() {
             super.viewDidLoad()
-            
+            self.navigationItem.setHidesBackButton(true, animated: true)
             // Ambil SKView dari storyboard
             guard let skView = self.view as? SKView else {
                 print("View dari GamePlayViewController bukan SKView")
@@ -34,18 +34,4 @@ import SpriteKit
         override var prefersStatusBarHidden: Bool {
             return true
         }
-    
-
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
