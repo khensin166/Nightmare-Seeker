@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		850ED9A32C3300D20030B0AB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 850ED9A22C3300D20030B0AB /* Actions.sks */; };
 		F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9802C2D32BF00FC983B /* AppDelegate.swift */; };
 		F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
-		F513B9852C2D32BF00FC983B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9842C2D32BF00FC983B /* Actions.sks */; };
 		F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9862C2D32BF00FC983B /* GameScene.swift */; };
 		F513B9892C2D32BF00FC983B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9882C2D32BF00FC983B /* GameViewController.swift */; };
 		F513B98C2C2D32BF00FC983B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F513B98B2C2D32BF00FC983B /* Base */; };
@@ -24,10 +24,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		850ED9A22C3300D20030B0AB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		F513B97D2C2D32BF00FC983B /* Nightmare Seeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nightmare Seeker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F513B9802C2D32BF00FC983B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F513B9822C2D32BF00FC983B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		F513B9842C2D32BF00FC983B /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		F513B9862C2D32BF00FC983B /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		F513B9882C2D32BF00FC983B /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		F513B98B2C2D32BF00FC983B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 				F5795B132C2D503800B22D2C /* OverLayerPopUp */,
 				F513B9802C2D32BF00FC983B /* AppDelegate.swift */,
 				F513B9822C2D32BF00FC983B /* GameScene.sks */,
-				F513B9842C2D32BF00FC983B /* Actions.sks */,
+				850ED9A22C3300D20030B0AB /* Actions.sks */,
 				F54121742C32BAB40079DECF /* GameSettingViewController.swift */,
 				F513B9862C2D32BF00FC983B /* GameScene.swift */,
 				F513B9882C2D32BF00FC983B /* GameViewController.swift */,
@@ -158,7 +158,7 @@
 				F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */,
 				F513B98C2C2D32BF00FC983B /* Base in Resources */,
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
-				F513B9852C2D32BF00FC983B /* Actions.sks in Resources */,
+				850ED9A32C3300D20030B0AB /* Actions.sks in Resources */,
 				F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 			);
@@ -342,7 +342,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Kenan.Nightmare-Seeker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sion.Nightmare-Seeker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -369,7 +369,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Kenan.Nightmare-Seeker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sion.Nightmare-Seeker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
