@@ -13,7 +13,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var music: AVAudioPlayer? = {
-        guard let musicLocation = Bundle.main.url(forResource: "bgmusic", withExtension: "mp3")else{
+        guard let musicLocation = Bundle.main.url(forResource: "bgsound1", withExtension: "mp3")else{
             return nil
         }
         let audioPlayer = try? AVAudioPlayer(contentsOf: musicLocation)

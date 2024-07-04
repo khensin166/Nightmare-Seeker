@@ -6,25 +6,34 @@
 //
 
 import UIKit
+import SpriteKit
+import AVFoundation
+
 
 class GamePlayViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationItem.setHidesBackButton(true, animated: true)
-        // Do any additional setup after loading the view.
+        
+        
+        if let view = self.view as! SKView? {
+            
+            if let scene = SKScene(fileNamed: "GameScene") {
+                scene.scaleMode = .aspectFill
+                
+                view.presentScene(scene)
+            }
+            
+        }
+        
     }
-//    kenannawd
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override var prefersStatusBarHidden: Bool {
+        return true
     }
-    */
+
 
 }

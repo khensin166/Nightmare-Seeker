@@ -3,12 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		E5787A4E2C32F4C100292ED0 /* GameAddUsernameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5787A4D2C32F4C100292ED0 /* GameAddUsernameViewController.swift */; };
-		E5787A502C32FB6100292ED0 /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5787A4F2C32FB6100292ED0 /* bgmusic.mp3 */; };
+		E5787A522C33D73700292ED0 /* bgsound1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = E5787A512C33D73700292ED0 /* bgsound1.mp3 */; };
 		F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9802C2D32BF00FC983B /* AppDelegate.swift */; };
 		F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
 		F513B9852C2D32BF00FC983B /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9842C2D32BF00FC983B /* Actions.sks */; };
@@ -27,7 +27,7 @@
 
 /* Begin PBXFileReference section */
 		E5787A4D2C32F4C100292ED0 /* GameAddUsernameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameAddUsernameViewController.swift; sourceTree = "<group>"; };
-		E5787A4F2C32FB6100292ED0 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgmusic.mp3; sourceTree = "<group>"; };
+		E5787A512C33D73700292ED0 /* bgsound1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgsound1.mp3; sourceTree = "<group>"; };
 		F513B97D2C2D32BF00FC983B /* Nightmare Seeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nightmare Seeker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F513B9802C2D32BF00FC983B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F513B9822C2D32BF00FC983B /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 				F513B98A2C2D32BF00FC983B /* Main.storyboard */,
 				F513B98D2C2D32C000FC983B /* Assets.xcassets */,
 				F513B98F2C2D32C000FC983B /* LaunchScreen.storyboard */,
-				E5787A4F2C32FB6100292ED0 /* bgmusic.mp3 */,
+				E5787A512C33D73700292ED0 /* bgsound1.mp3 */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -139,7 +139,7 @@
 				};
 			};
 			buildConfigurationList = F513B9782C2D32BF00FC983B /* Build configuration list for PBXProject "Nightmare Seeker" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -164,9 +164,9 @@
 				F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */,
 				F513B98C2C2D32BF00FC983B /* Base in Resources */,
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
+				E5787A522C33D73700292ED0 /* bgsound1.mp3 in Resources */,
 				F513B9852C2D32BF00FC983B /* Actions.sks in Resources */,
 				F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */,
-				E5787A502C32FB6100292ED0 /* bgmusic.mp3 in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,9 +336,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
+				DEVELOPMENT_TEAM = 2TH6XQBC4Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -350,8 +351,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Kenan.Nightmare-Seeker";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Exaudi2003;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -363,9 +365,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
+				DEVELOPMENT_TEAM = 2TH6XQBC4Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -377,8 +380,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "Kenan.Nightmare-Seeker";
+				PRODUCT_BUNDLE_IDENTIFIER = com.Exaudi2003;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

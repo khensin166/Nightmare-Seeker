@@ -156,7 +156,7 @@ You'll need to overcome various obstacles while staying calm and focused to succ
                                     <fontDescription key="titleFontDescription" type="boldSystem" pointSize="21"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="c6o-IT-tyo" kind="show" id="ryh-S6-96N"/>
+                                    <segue destination="c6o-IT-tyo" kind="show" id="wC0-Vt-nsg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Suggest using earphone ⚠️" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDA-U9-DHn">
@@ -243,26 +243,16 @@ You'll need to overcome various obstacles while staying calm and focused to succ
         <scene sceneID="aut-4w-X8W">
             <objects>
                 <viewController id="c6o-IT-tyo" customClass="GamePlayViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Gck-6u-Zkg">
+                    <view key="view" contentMode="scaleToFill" id="Gck-6u-Zkg" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IK-hr-OLF">
-                                <rect key="frame" x="163" y="416" width="81" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="zUT-N4-6QV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="L4w-zN-XYL"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9f-6y-MQl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7555" y="4"/>
+            <point key="canvasLocation" x="7554.961832061068" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
