@@ -34,20 +34,10 @@ class GameScene: SKScene {
                 self.addChild(person_walk_1)
             }
             
-            // Mulai animasi gerakan person
-            startMoving()
+            
         }
         
-        private func startMoving() {
-            // Define movement action
-            let moveRight = SKAction.moveBy(x: 100, y: 0, duration: 1)
-            let moveLeft = SKAction.moveBy(x: -100, y: 0, duration: 1)
-            let sequence = SKAction.sequence([moveRight, moveLeft])
-            let repeatAction = SKAction.repeatForever(sequence)
-            
-            // Run the movement action
-            person_walk_1.run(repeatAction)
-        }
+        
 
 
     
