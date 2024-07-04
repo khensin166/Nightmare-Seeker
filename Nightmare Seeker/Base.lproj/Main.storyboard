@@ -120,6 +120,7 @@
                                 <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </buttonConfiguration>
                             <connections>
+                                <action selector="buttonAction:" destination="TAT-NP-UuB" eventType="touchUpInside" id="8tw-g9-oQx"/>
                                 <segue destination="fYz-cc-I2h" kind="show" id="jih-vs-Xgj"/>
                             </connections>
                         </button>

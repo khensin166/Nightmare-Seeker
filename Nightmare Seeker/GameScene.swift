@@ -1,92 +1,80 @@
 //
 //  GameScene.swift
-//  Nightmare Seeker
+//  Nightmare-Seekers
 //
-//  Created by Foundation-014 on 27/06/24.
+//  Created by Foundation-024 on 02/07/24.
 //
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var label : SKLabelNode?
-    private var spinnyNode : SKShapeNode?
-    private var person_walk_1: SKSpriteNode!
+    var character: SKSpriteNode!
+    var bgDark: SKSpriteNode!
+    var motionManager: CMMotionManager!
+    
+    override func didMove(to view: SKView) {
+        physicsWorld.contactDelegate = self
         
-        override func didMove(to view: SKView) {
-            // Pastikan untuk memanggil method super
-            super.didMove(to: view)
-            
-            // Ambil node background dari .sks jika ada
-            if let backgroundNode = self.childNode(withName: "lorong") as? SKSpriteNode {
-                backgroundNode.zPosition = -1  // Pastikan background berada di belakang
+        // Ambil node "character" dari sks atau buat manual
+        bgDark = self.childNode(withName: "//bgDark") as? SKSpriteNode
+        if let existingChar = self.childNode(withName: "//character") as? SKSpriteNode {
+            character = existingChar
+        } else {
+            character = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+            character.zPosition = 10 // Pastikan ini berada di depan bg
+            addChild(character)
+        }
+        
+        character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
+        character.physicsBody?.affectedByGravity = false
+        character.physicsBody?.allowsRotation = false
+        character.physicsBody?.contactTestBitMask = character.physicsBody?.collisionBitMask ?? 0
+        
+        // Mulai membaca data accelerometer
+        startAccelerometer()
+    }
+    
+    func startAccelerometer() {
+        motionManager = CMMotionManager()
+        motionManager.accelerometerUpdateInterval = 0.1
+        
+        guard motionManager.isAccelerometerAvailable else {
+            print("Accelerometer is not available")
+            return
+        }
+        
+        motionManager.startAccelerometerUpdates(to: .main) { (accelerometerData, error) in
+            guard let acceleration = accelerometerData?.acceleration else {
+                print("Failed to get accelerometer data: \(error?.localizedDescription ?? "Unknown error")")
+                return
             }
             
-            // Ambil node person dari .sks jika ada, jika tidak buat baru
-            if let personNode = self.childNode(withName: "person_walk_1") as? SKSpriteNode {
-                person_walk_1 = personNode
-            } else {
-                let personTexture = SKTexture(imageNamed: "person_walk_1")
-                person_walk_1 = SKSpriteNode(texture: personTexture)
-                person_walk_1.name = "person_walk_1"
-                person_walk_1.position = CGPoint(x: self.size.width / 2, y: self.size.height / 2)
-                self.addChild(person_walk_1)
-            }
-            
-            
+            // Update position based on accelerometer data
+            self.updatePositionWith(acceleration: acceleration)
         }
+    }
+    
+    func updatePositionWith(acceleration: CMAcceleration) {
+        // Adjust these values as needed for sensitivity and direction
+        let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
+        let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width / 2 // Batas posisi X agar tidak keluar dari layar
         
+        // Calculate new position based on accelerometer data
+        let newX = character.position.x + CGFloat(acceleration.x * moveSpeed)
         
-
-
-    
-    func touchDown(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.green
-            self.addChild(n)
-        }
-    }
-    
-    func touchMoved(toPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.blue
-            self.addChild(n)
-        }
-    }
-    
-    func touchUp(atPoint pos : CGPoint) {
-        if let n = self.spinnyNode?.copy() as! SKShapeNode? {
-            n.position = pos
-            n.strokeColor = SKColor.red
-            self.addChild(n)
-        }
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
-            label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
-        }
+        // Limit orang node's X position within screen bounds
+        let adjustedX = max(-maxXPosition, min(maxXPosition, newX))
         
-        for t in touches { self.touchDown(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchMoved(toPoint: t.location(in: self)) }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for t in touches { self.touchUp(atPoint: t.location(in: self)) }
-    }
-    
-    
-    override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+        // Calculate the amount to move bgDark based on character's movement
+        let bgDarkMoveAmount = character.position.x - adjustedX
+        
+        // Update bgDark position
+        bgDark.position.x -= bgDarkMoveAmount
+        
+        // Set the new position
+        character.position.x = adjustedX
     }
 }

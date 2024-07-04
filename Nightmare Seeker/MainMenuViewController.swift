@@ -47,6 +47,24 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
                 blurView.addGestureRecognizer(tapGesture)
     }
     
+    @IBAction func buttonAction(_ sender: Any) {
+        guard let username = usernameField.text, !username.isEmpty else {
+            // Username field is empty, show an alert or a message to the user
+            showAlert(message: "Please enter your username")
+            return
+        }
+
+        // Username is not empty, proceed with the action
+        animateOut(desiredView: popUpView)
+        animateOut(desiredView: blurView)
+    }
+
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
     func animateIn(desiredView: UIView) {
         let backgroundView = self.view!
         
@@ -57,7 +75,7 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
         desiredView.alpha = 0
         desiredView.center = backgroundView.center
         
-        UIView.animate(withDuration: 1, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             desiredView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             desiredView.alpha = 1
         })
@@ -86,11 +104,7 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
         }
     
     
-//    IBOutlet
-    @IBAction func buttonAction(_ sender: Any) {
-        animateOut(desiredView: popUpView)
-        animateOut(desiredView: blurView)
-    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             textField.resignFirstResponder()
