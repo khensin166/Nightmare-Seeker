@@ -6,16 +6,45 @@
 //
 
 import UIKit
+import AVFoundation
 
 class GameSettingViewController: UIViewController {
 
+    var playerVidio: AVPlayer?
+    
+    
+//    cek music playet nya tadi ada dimana
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    @IBOutlet weak var muteButton: UIButton!
+    var isMute = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func exitApplication(_ sender: Any) {
+        exit(0)
+    }
+    
+    @IBAction func changeMuteButton(_ sender: Any) {
+        if !isMute {
+            muteButton.setImage(UIImage(systemName: "speaker.slash.circle.fill"), for: .normal)
+            (sender as? UIButton)?.setTitle("Mute", for: .normal)
+            isMute = true
+            appDelegate.music?.stop()
+        } else {
+            muteButton.setImage(UIImage(systemName: "speaker.circle.fill"), for: .normal)
+            (sender as? UIButton)?.setTitle("Play", for: .normal)
+            isMute = false
+            appDelegate.music?.play()
+        }
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

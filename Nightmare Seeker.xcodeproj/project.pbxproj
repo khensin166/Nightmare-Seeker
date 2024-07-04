@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		850ED9A32C3300D20030B0AB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 850ED9A22C3300D20030B0AB /* Actions.sks */; };
 		F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9802C2D32BF00FC983B /* AppDelegate.swift */; };
-		F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
 		F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9862C2D32BF00FC983B /* GameScene.swift */; };
 		F513B9892C2D32BF00FC983B /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9882C2D32BF00FC983B /* GameViewController.swift */; };
 		F513B98C2C2D32BF00FC983B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F513B98B2C2D32BF00FC983B /* Base */; };
@@ -19,6 +18,8 @@
 		F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121742C32BAB40079DECF /* GameSettingViewController.swift */; };
 		F54121772C32BB6A0079DECF /* GameIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121762C32BB6A0079DECF /* GameIntroViewController.swift */; };
 		F54121792C32BCE40079DECF /* GamePlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121782C32BCE40079DECF /* GamePlayViewController.swift */; };
+		F541217A2C33FF6A0079DECF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
+		F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F541217B2C3524A20079DECF /* bgsound.mp3 */; };
 		F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5795B152C2D507900B22D2C /* OverLayerPopUpController.xib */; };
 		F5795B172C2D507900B22D2C /* OverLayerPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5795B142C2D507900B22D2C /* OverLayerPopUpController.swift */; };
 /* End PBXBuildFile section */
@@ -37,6 +38,7 @@
 		F54121742C32BAB40079DECF /* GameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingViewController.swift; sourceTree = "<group>"; };
 		F54121762C32BB6A0079DECF /* GameIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIntroViewController.swift; sourceTree = "<group>"; };
 		F54121782C32BCE40079DECF /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
+		F541217B2C3524A20079DECF /* bgsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgsound.mp3; sourceTree = "<group>"; };
 		F5795B142C2D507900B22D2C /* OverLayerPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverLayerPopUpController.swift; sourceTree = "<group>"; };
 		F5795B152C2D507900B22D2C /* OverLayerPopUpController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverLayerPopUpController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +86,7 @@
 				F513B98D2C2D32C000FC983B /* Assets.xcassets */,
 				F513B98F2C2D32C000FC983B /* LaunchScreen.storyboard */,
 				F513B9972C2D340600FC983B /* MainMenuViewController.swift */,
+				F541217B2C3524A20079DECF /* bgsound.mp3 */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -155,12 +158,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F513B9832C2D32BF00FC983B /* GameScene.sks in Resources */,
 				F513B98C2C2D32BF00FC983B /* Base in Resources */,
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
 				850ED9A32C3300D20030B0AB /* Actions.sks in Resources */,
 				F5795B162C2D507900B22D2C /* OverLayerPopUpController.xib in Resources */,
+				F541217A2C33FF6A0079DECF /* GameScene.sks in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
+				F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +334,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8J7M9Q2J3;
+				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -342,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sion.Nightmare-Seeker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kenan.Nightmare-Seeker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -357,7 +361,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = H8J7M9Q2J3;
+				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -369,7 +373,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sion.Nightmare-Seeker";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.kenan.Nightmare-Seeker";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
