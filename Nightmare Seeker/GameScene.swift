@@ -13,10 +13,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var character: SKSpriteNode!
     var bgDark: SKSpriteNode!
+    var kursi1: SKSpriteNode!
     var motionManager: CMMotionManager!
+    
+    let xPosition = [90, -90]
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
+        
+        kursi1 = self.childNode(withName: "//kursi1") as? SKSpriteNode
         
         // Ambil node "character" dari sks atau buat manual
         bgDark = self.childNode(withName: "//bgDark") as? SKSpriteNode
@@ -27,7 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             character.zPosition = 10 // Pastikan ini berada di depan bg
             addChild(character)
         }
-        
+
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
         character.physicsBody?.allowsRotation = false
@@ -35,7 +40,44 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Mulai membaca data accelerometer
         startAccelerometer()
+        
+        repeatedlySpawnKursi1()
     }
+    
+    func repeatedlySpawnKursi1(){
+        let spawnAction = SKAction.run {
+            self.spawnKursi1()
+        }
+        
+        let waitAction = SKAction.wait(forDuration: 2)
+        
+        let spawnAndWaitAction = SKAction.sequence([spawnAction, waitAction])
+
+        run(SKAction.repeatForever(spawnAndWaitAction))
+    }
+    
+    func spawnKursi1(){
+        let newKursi1 = kursi1?.copy() as! SKSpriteNode
+        
+        newKursi1.position = CGPoint(x: xPosition[Int.random(in: 0...1)], y: 700)
+        newKursi1.physicsBody = SKPhysicsBody(rectangleOf: newKursi1.size)
+        newKursi1.physicsBody?.isDynamic = false
+        
+        addChild(newKursi1)
+        
+//        hilangkan berdasarkan cone yang ditambahkan
+        moveKursi1(node: newKursi1)
+    }
+    
+    func moveKursi1(node: SKNode){
+        let moveDownAction = SKAction.moveTo(y: -700, duration: 4)
+        
+        //removecone
+        let removeNodeAction = SKAction.removeFromParent()
+        
+        node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
+    }
+    
     
     func startAccelerometer() {
         motionManager = CMMotionManager()
