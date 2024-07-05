@@ -1,10 +1,3 @@
-//
-//  GameScene.swift
-//  Nightmare-Seekers
-//
-//  Created by Foundation-024 on 02/07/24.
-//
-
 import SpriteKit
 import GameplayKit
 import CoreMotion
@@ -15,8 +8,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bgDark: SKSpriteNode!
     var kursi1: SKSpriteNode!
     var motionManager: CMMotionManager!
+    var scoreLabel: SKLabelNode!
+    var score: Int = 0
     
     let xPosition = [90, -90]
+    
+    struct PhysicsCategories {
+        static let none: UInt32 = 0
+        static let character: UInt32 = 0x1 << 0
+        static let kursi: UInt32 = 0x1 << 1
+    }
     
     override func didMove(to view: SKView) {
         physicsWorld.contactDelegate = self
@@ -36,7 +37,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
         character.physicsBody?.allowsRotation = false
-        character.physicsBody?.contactTestBitMask = character.physicsBody?.collisionBitMask ?? 0
+        character.physicsBody?.isDynamic = true
+        character.physicsBody?.categoryBitMask = PhysicsCategories.character
+        character.physicsBody?.contactTestBitMask = PhysicsCategories.kursi
+        character.physicsBody?.collisionBitMask = PhysicsCategories.none
+        
+        // Buat label skor
+        scoreLabel = SKLabelNode(fontNamed: "Arial")
+        scoreLabel.fontSize = 20
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.position = CGPoint(x: frame.minX + 20, y: frame.maxY - 40)
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.zPosition = 100
+        scoreLabel.text = "Score: 0"
+        addChild(scoreLabel)
         
         // Mulai membaca data accelerometer
         startAccelerometer()
@@ -62,22 +76,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         newKursi1.position = CGPoint(x: xPosition[Int.random(in: 0...1)], y: 700)
         newKursi1.physicsBody = SKPhysicsBody(rectangleOf: newKursi1.size)
         newKursi1.physicsBody?.isDynamic = false
+        newKursi1.physicsBody?.categoryBitMask = PhysicsCategories.kursi
+        newKursi1.physicsBody?.contactTestBitMask = PhysicsCategories.character
+        newKursi1.physicsBody?.collisionBitMask = PhysicsCategories.none
         
         addChild(newKursi1)
         
-//        hilangkan berdasarkan cone yang ditambahkan
         moveKursi1(node: newKursi1)
     }
     
     func moveKursi1(node: SKNode){
         let moveDownAction = SKAction.moveTo(y: -700, duration: 4)
-        
-        //removecone
         let removeNodeAction = SKAction.removeFromParent()
         
         node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
     }
-    
     
     func startAccelerometer() {
         motionManager = CMMotionManager()
@@ -94,29 +107,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 return
             }
             
-            // Update position based on accelerometer data
             self.updatePositionWith(acceleration: acceleration)
         }
     }
     
     func updatePositionWith(acceleration: CMAcceleration) {
-        // Adjust these values as needed for sensitivity and direction
-        let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
-        let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width / 2 // Batas posisi X agar tidak keluar dari layar
+        let moveSpeed: CGFloat = 100.0
+        let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width / 2
         
-        // Calculate new position based on accelerometer data
         let newX = character.position.x + CGFloat(acceleration.x * moveSpeed)
-        
-        // Limit orang node's X position within screen bounds
         let adjustedX = max(-maxXPosition, min(maxXPosition, newX))
         
-        // Calculate the amount to move bgDark based on character's movement
         let bgDarkMoveAmount = character.position.x - adjustedX
         
-        // Update bgDark position
         bgDark.position.x -= bgDarkMoveAmount
-        
-        // Set the new position
         character.position.x = adjustedX
     }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+        
+        if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
+            score += 1
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
 }
+
