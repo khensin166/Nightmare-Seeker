@@ -119,4 +119,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set the new position
         character.position.x = adjustedX
     }
+    
+    func showGameOver() {
+        
+    }
 }
