@@ -15,9 +15,11 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var usernameField: UITextField!
     
+    @IBOutlet var popUpView: UIView!
+    
     var isMute = false
     
-    @IBOutlet var popUpView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
