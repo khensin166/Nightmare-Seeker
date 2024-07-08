@@ -11,13 +11,15 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.setHidesBackButton(true, animated: true)
         
         if let view = self.view as! SKView? {
             if let scene = SKScene(fileNamed: "GameScene") {
-                scene.scaleMode = .aspectFill
+//                scene.scaleMode = .aspectFill
                 view.presentScene(scene)
             }
             

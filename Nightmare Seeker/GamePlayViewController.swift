@@ -10,13 +10,14 @@ import SpriteKit
 
     class GamePlayViewController: UIViewController {
         
-        @IBOutlet var GameOverPopUp: UIView!
-        
+      
         
         override func viewDidLoad() {
             super.viewDidLoad()
             self.navigationItem.setHidesBackButton(true, animated: true)
         
+           
+            
             
         }
         
@@ -24,13 +25,6 @@ import SpriteKit
             return true
         }
         
+
         
-        @IBAction func playAgain(_ sender: Any) {
-            if let scene = SKScene(fileNamed: "GameScene") {
-                scene.scaleMode = .aspectFill
-                
-                let transition = SKTransition.doorway(withDuration: 1)
-//                view?.presentScene(scene, transition: transition)
-            }
-        }
     }

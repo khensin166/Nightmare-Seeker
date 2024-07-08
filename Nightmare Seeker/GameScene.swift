@@ -11,20 +11,35 @@ import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+//   initial declaration
     var character: SKSpriteNode!
     var bgDark: SKSpriteNode!
-    var kursi1: SKSpriteNode!
+    var chair: SKSpriteNode!
     var motionManager: CMMotionManager!
+    var scoreLabel: SKLabelNode!
+    var score: Int = 0
+    var passChair: Int = 0
     
     let xPosition = [90, -90]
+
+    
+//    physics node
+    struct PhysicsCategories {
+        static let none: UInt32 = 0
+        static let character: UInt32 = 0x1 << 0
+        static let kursi: UInt32 = 0x1 << 1
+    }
     
     override func didMove(to view: SKView) {
+        
         physicsWorld.contactDelegate = self
         
-        kursi1 = self.childNode(withName: "//kursi1") as? SKSpriteNode
+        chair = self.childNode(withName: "//kursi1") as? SKSpriteNode
         
         // Ambil node "character" dari sks atau buat manual
         bgDark = self.childNode(withName: "//bgDark") as? SKSpriteNode
+        bgDark.zPosition = 5 // Pastikan bgDark berada di depan kursi
+        
         if let existingChar = self.childNode(withName: "//character") as? SKSpriteNode {
             character = existingChar
         } else {
@@ -33,10 +48,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(character)
         }
 
+        let miniCharacterSize = CGSize(width: character.size.width * 0.8, height: character.size.height * 0.8)
+        
+//        kecilkan physic character
+        character.size = miniCharacterSize
+        
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
         character.physicsBody?.allowsRotation = false
-        character.physicsBody?.contactTestBitMask = character.physicsBody?.collisionBitMask ?? 0
+        character.physicsBody?.isDynamic = true
+        
+        character.physicsBody?.categoryBitMask = PhysicsCategories.character
+        character.physicsBody?.contactTestBitMask = PhysicsCategories.kursi
+        character.physicsBody?.collisionBitMask = PhysicsCategories.none
+
+        // Buat label skor
+            scoreLabel = SKLabelNode(fontNamed: "Arial")
+            scoreLabel.fontSize = 20
+            scoreLabel.fontColor = SKColor.white
+            scoreLabel.position = CGPoint(x: frame.minX + 20, y: frame.maxY - 40)
+            scoreLabel.horizontalAlignmentMode = .left
+            scoreLabel.zPosition = 100
+            scoreLabel.text = "Score: 0"
+            addChild(scoreLabel)
+
         
         // Mulai membaca data accelerometer
         startAccelerometer()
@@ -46,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func repeatedlySpawnKursi1(){
         let spawnAction = SKAction.run {
-            self.spawnKursi1()
+            self.spawnChair()
         }
         
         let waitAction = SKAction.wait(forDuration: 2)
@@ -56,26 +91,36 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         run(SKAction.repeatForever(spawnAndWaitAction))
     }
     
-    func spawnKursi1(){
-        let newKursi1 = kursi1?.copy() as! SKSpriteNode
-        
-        newKursi1.position = CGPoint(x: xPosition[Int.random(in: 0...1)], y: 700)
-        newKursi1.physicsBody = SKPhysicsBody(rectangleOf: newKursi1.size)
-        newKursi1.physicsBody?.isDynamic = false
-        
-        addChild(newKursi1)
-        
-//        hilangkan berdasarkan cone yang ditambahkan
-        moveKursi1(node: newKursi1)
+    func spawnChair(){
+        guard let newChair = chair?.copy() as? SKSpriteNode else { return }
+            
+            newChair.position = CGPoint(x: xPosition[Int.random(in: 0...1)], y: 700)
+            
+            // Ubah ukuran physics body menjadi lebih kecil
+            let smallerPhysicsBodySize = CGSize(width: newChair.size.width * 0.8, height: newChair.size.height * 0.8)
+            newChair.physicsBody = SKPhysicsBody(rectangleOf: smallerPhysicsBodySize)
+            newChair.physicsBody?.isDynamic = false
+            newChair.physicsBody?.categoryBitMask = PhysicsCategories.kursi
+            newChair.physicsBody?.contactTestBitMask = PhysicsCategories.character
+            newChair.physicsBody?.collisionBitMask = PhysicsCategories.none
+            
+            addChild(newChair)
+            
+            moveChair(node: newChair)
     }
     
-    func moveKursi1(node: SKNode){
+    func moveChair(node: SKNode){
         let moveDownAction = SKAction.moveTo(y: -700, duration: 4)
         
-        //removecone
-        let removeNodeAction = SKAction.removeFromParent()
-        
-        node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
+        // Update score and remove node action
+            let removeNodeAction = SKAction.run {
+                self.passChair += 1
+                self.score = self.passChair // Update score based on passed kursi
+                self.updateScore()
+                node.removeFromParent()
+            }
+            
+            node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
     }
     
     
@@ -100,6 +145,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updatePositionWith(acceleration: CMAcceleration) {
+        
+        let threshold: Double = 0.02
+        
+        // Jika perubahan pada akselerometer kurang dari ambang batas, abaikan perubahan
+        guard abs(acceleration.x) > threshold else { return }
+        
         // Adjust these values as needed for sensitivity and direction
         let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
         let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width / 2 // Batas posisi X agar tidak keluar dari layar
@@ -120,7 +171,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         character.position.x = adjustedX
     }
     
-    func showGameOver() {
-        
+    func didBegin(_ contact: SKPhysicsContact) {
+        let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
+            
+            if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
+                showGameOver()
+            }
     }
+    
+    func updateScore() {
+        scoreLabel.text = "Score: \(score)"
+    }
+    
+    func showGameOver() {
+        if let gameOverScene = SKScene(fileNamed: "GameOverScene") {
+            let transition = SKTransition.fade(withDuration: 1.0)
+            view?.presentScene(gameOverScene, transition: transition)
+        }
+    }
+
 }

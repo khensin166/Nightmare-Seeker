@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UEW-9Y-Ztu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="c6o-IT-tyo">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -29,7 +29,7 @@
             <objects>
                 <viewController id="TAT-NP-UuB" customClass="MainMenuViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WT5-te-BF6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="MainMenuImage" translatesAutoresizingMaskIntoConstraints="NO" id="LjD-Tu-RsZ">
@@ -144,7 +144,7 @@
             <objects>
                 <viewController id="3hc-6C-wDw" customClass="GameSettingViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4Oh-yt-ph6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundSetting" translatesAutoresizingMaskIntoConstraints="NO" id="T4K-fo-xxf">
@@ -209,7 +209,7 @@
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="fYz-cc-I2h" customClass="GameIntroViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eNt-M0-828">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="backgroundSetting" translatesAutoresizingMaskIntoConstraints="NO" id="2ok-xY-bsb">
@@ -300,12 +300,12 @@ You'll need to overcome various obstacles while staying calm and focused to succ
             </objects>
             <point key="canvasLocation" x="1999.2366412213739" y="3.5211267605633805"/>
         </scene>
-        <!--Game Play View Controller-->
+        <!--Game View Controller-->
         <scene sceneID="aut-4w-X8W">
             <objects>
-                <viewController id="c6o-IT-tyo" customClass="GamePlayViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="c6o-IT-tyo" customClass="GameViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
                     <skView key="view" contentMode="scaleToFill" sceneName="GameScene.sks" id="nuR-Gy-aGJ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </skView>
                     <navigationItem key="navigationItem" id="L4w-zN-XYL"/>
@@ -368,7 +368,7 @@ You'll need to overcome various obstacles while staying calm and focused to succ
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="TlZ-aO-yHr"/>
+        <segue reference="AFG-z0-Cte"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="MainMenuImage" width="3375" height="6000"/>

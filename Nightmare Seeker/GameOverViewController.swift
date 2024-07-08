@@ -7,7 +7,9 @@
 
 import UIKit
 
-class GameOverViewController: UIViewController {
+class GameOverViewController: SK {
+    
+    var restartLabel: SKLabelNode!
 
     override func viewDidLoad() {
         super.viewDidLoad()
