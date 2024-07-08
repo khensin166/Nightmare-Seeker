@@ -123,13 +123,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bgDark.position.x -= bgDarkMoveAmount
         character.position.x = adjustedX
     }
-    
     func didBegin(_ contact: SKPhysicsContact) {
         let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-        
-        if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
-            score += 1
-            scoreLabel.text = "Score: \(score)"
+            
+            if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
+                showGameOver()
+            }
+    }
+    
+    func updateScore() {
+        scoreLabel.text = "Score: \(score)"
+    }
+    
+    func showGameOver() {
+        if let gameOverScene = SKScene(fileNamed: "GameOverScene") {
+            let transition = SKTransition.fade(withDuration: 1.0)
+            view?.presentScene(gameOverScene, transition: transition)
         }
     }
 }
