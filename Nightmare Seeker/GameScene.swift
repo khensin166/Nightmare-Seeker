@@ -1,17 +1,10 @@
-//
-//  GameScene.swift
-//  Nightmare-Seekers
-//
-//  Created by Foundation-024 on 02/07/24.
-//
-
 import SpriteKit
 import GameplayKit
 import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-//   initial declaration
+    // Initial declaration
     var character: SKSpriteNode!
     var bgDark: SKSpriteNode!
     var chair: SKSpriteNode!
@@ -21,9 +14,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var passChair: Int = 0
     
     let xPosition = [90, -90]
-
     
-//    physics node
     struct PhysicsCategories {
         static let none: UInt32 = 0
         static let character: UInt32 = 0x1 << 0
@@ -31,7 +22,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
-        
         physicsWorld.contactDelegate = self
         
         chair = self.childNode(withName: "//kursi1") as? SKSpriteNode
@@ -47,10 +37,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             character.zPosition = 10 // Pastikan ini berada di depan bg
             addChild(character)
         }
-
+        
         let miniCharacterSize = CGSize(width: character.size.width * 0.8, height: character.size.height * 0.8)
         
-//        kecilkan physic character
+        // Kecilkan physic character
         character.size = miniCharacterSize
         
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
@@ -61,17 +51,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         character.physicsBody?.categoryBitMask = PhysicsCategories.character
         character.physicsBody?.contactTestBitMask = PhysicsCategories.kursi
         character.physicsBody?.collisionBitMask = PhysicsCategories.none
-
+        
         // Buat label skor
-            scoreLabel = SKLabelNode(fontNamed: "Arial")
-            scoreLabel.fontSize = 20
-            scoreLabel.fontColor = SKColor.white
-            scoreLabel.position = CGPoint(x: frame.minX + 20, y: frame.maxY - 40)
-            scoreLabel.horizontalAlignmentMode = .left
-            scoreLabel.zPosition = 100
-            scoreLabel.text = "Score: 0"
-            addChild(scoreLabel)
-
+        scoreLabel = SKLabelNode(fontNamed: "Arial")
+        scoreLabel.fontSize = 20
+        scoreLabel.fontColor = SKColor.white
+        scoreLabel.position = CGPoint(x: frame.minX + 20, y: frame.maxY - 40)
+        scoreLabel.horizontalAlignmentMode = .left
+        scoreLabel.zPosition = 100
+        scoreLabel.text = "Score: 0"
+        addChild(scoreLabel)
         
         // Mulai membaca data accelerometer
         startAccelerometer()
@@ -79,50 +68,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         repeatedlySpawnKursi1()
     }
     
-    func repeatedlySpawnKursi1(){
+    func repeatedlySpawnKursi1() {
         let spawnAction = SKAction.run {
             self.spawnChair()
         }
         
         let waitAction = SKAction.wait(forDuration: 2)
-        
         let spawnAndWaitAction = SKAction.sequence([spawnAction, waitAction])
-
+        
         run(SKAction.repeatForever(spawnAndWaitAction))
     }
     
-    func spawnChair(){
+    func spawnChair() {
         guard let newChair = chair?.copy() as? SKSpriteNode else { return }
-            
-            newChair.position = CGPoint(x: xPosition[Int.random(in: 0...1)], y: 700)
-            
-            // Ubah ukuran physics body menjadi lebih kecil
-            let smallerPhysicsBodySize = CGSize(width: newChair.size.width * 0.8, height: newChair.size.height * 0.8)
-            newChair.physicsBody = SKPhysicsBody(rectangleOf: smallerPhysicsBodySize)
-            newChair.physicsBody?.isDynamic = false
-            newChair.physicsBody?.categoryBitMask = PhysicsCategories.kursi
-            newChair.physicsBody?.contactTestBitMask = PhysicsCategories.character
-            newChair.physicsBody?.collisionBitMask = PhysicsCategories.none
-            
-            addChild(newChair)
-            
-            moveChair(node: newChair)
+        
+        newChair.position = CGPoint(x: xPosition[Int.random(in: 0...1)], y: 700)
+        newChair.zPosition = 4 // Pastikan kursi berada di belakang bgDark
+        
+        // Ubah ukuran physics body menjadi lebih kecil
+        let smallerPhysicsBodySize = CGSize(width: newChair.size.width * 0.8, height: newChair.size.height * 0.8)
+        newChair.physicsBody = SKPhysicsBody(rectangleOf: smallerPhysicsBodySize)
+        newChair.physicsBody?.isDynamic = false
+        newChair.physicsBody?.categoryBitMask = PhysicsCategories.kursi
+        newChair.physicsBody?.contactTestBitMask = PhysicsCategories.character
+        newChair.physicsBody?.collisionBitMask = PhysicsCategories.none
+        
+        addChild(newChair)
+        
+        moveChair(node: newChair)
     }
     
-    func moveChair(node: SKNode){
+    func moveChair(node: SKNode) {
         let moveDownAction = SKAction.moveTo(y: -700, duration: 4)
         
-        // Update score and remove node action
-            let removeNodeAction = SKAction.run {
-                self.passChair += 1
-                self.score = self.passChair // Update score based on passed kursi
-                self.updateScore()
-                node.removeFromParent()
-            }
-            
-            node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
+        let removeNodeAction = SKAction.run {
+            self.passChair += 1
+            self.score = self.passChair // Update score based on passed kursi
+            self.updateScore()
+            node.removeFromParent()
+        }
+        
+        node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
     }
-    
     
     func startAccelerometer() {
         motionManager = CMMotionManager()
@@ -139,44 +126,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 return
             }
             
-            // Update position based on accelerometer data
             self.updatePositionWith(acceleration: acceleration)
         }
     }
     
     func updatePositionWith(acceleration: CMAcceleration) {
-        
         let threshold: Double = 0.02
         
         // Jika perubahan pada akselerometer kurang dari ambang batas, abaikan perubahan
         guard abs(acceleration.x) > threshold else { return }
         
-        // Adjust these values as needed for sensitivity and direction
         let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
         let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width / 2 // Batas posisi X agar tidak keluar dari layar
         
-        // Calculate new position based on accelerometer data
         let newX = character.position.x + CGFloat(acceleration.x * moveSpeed)
-        
-        // Limit orang node's X position within screen bounds
         let adjustedX = max(-maxXPosition, min(maxXPosition, newX))
         
-        // Calculate the amount to move bgDark based on character's movement
         let bgDarkMoveAmount = character.position.x - adjustedX
-        
-        // Update bgDark position
         bgDark.position.x -= bgDarkMoveAmount
-        
-        // Set the new position
         character.position.x = adjustedX
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
         let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
-            
-            if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
-                showGameOver()
-            }
+        
+        if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
+            showGameOver()
+        }
     }
     
     func updateScore() {
@@ -189,5 +165,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             view?.presentScene(gameOverScene, transition: transition)
         }
     }
-
 }
