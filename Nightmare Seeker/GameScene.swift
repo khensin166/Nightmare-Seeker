@@ -13,8 +13,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score: Int = 0
     var passChair: Int = 0
     
-    let xPosition = [90, -90]
+    let xPosition = [90, 0, -90]
     
+/*  
+    Struktur PhysicsCategories digunakan untuk mendefinisikan kategori fisika menggunakan bitmask,
+    yang memungkinkan pengaturan interaksi dan deteksi kontak antara objek dalam permainan
+*/
     struct PhysicsCategories {
         static let none: UInt32 = 0
         static let character: UInt32 = 0x1 << 0
@@ -70,12 +74,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func repeatedlySpawnKursi1() {
         let spawnAction = SKAction.run {
-            self.spawnChair()
-        }
-        
-        let waitAction = SKAction.wait(forDuration: 2)
+                    self.spawnChair()
+                }
+                
+        let waitAction = SKAction.wait(forDuration: TimeInterval.random(in: 3...6)) // Durasi acak antara 3 hingga 6 detik
+                
         let spawnAndWaitAction = SKAction.sequence([spawnAction, waitAction])
-        
+                
         run(SKAction.repeatForever(spawnAndWaitAction))
     }
     
@@ -99,15 +104,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func moveChair(node: SKNode) {
-        let moveDownAction = SKAction.moveTo(y: -700, duration: 4)
-        
+        let duration = TimeInterval.random(in: 6...10) // Durasi acak antara 2 hingga 5 detik untuk variasi kecepatan
+        let moveDownAction = SKAction.moveTo(y: -700, duration: duration)
+                
         let removeNodeAction = SKAction.run {
             self.passChair += 1
             self.score = self.passChair // Update score based on passed kursi
             self.updateScore()
             node.removeFromParent()
         }
-        
+                
         node.run(SKAction.sequence([moveDownAction, removeNodeAction]))
     }
     
@@ -137,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         guard abs(acceleration.x) > threshold else { return }
         
         let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
-        let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width / 2 // Batas posisi X agar tidak keluar dari layar
+        let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width // Batas posisi X agar tidak keluar dari layar
         
         let newX = character.position.x + CGFloat(acceleration.x * moveSpeed)
         let adjustedX = max(-maxXPosition, min(maxXPosition, newX))
