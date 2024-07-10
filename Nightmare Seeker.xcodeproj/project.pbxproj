@@ -22,6 +22,7 @@
 		F541217A2C33FF6A0079DECF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
 		F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F541217B2C3524A20079DECF /* bgsound.mp3 */; };
 		F54121802C37F86A0079DECF /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F541217F2C37F86A0079DECF /* GameOverScene.sks */; };
+		F58679A12C3E6A2D0049B655 /* collision.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F58679A02C3E6A2D0049B655 /* collision.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		F54121782C32BCE40079DECF /* GamePlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamePlayViewController.swift; sourceTree = "<group>"; };
 		F541217B2C3524A20079DECF /* bgsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgsound.mp3; sourceTree = "<group>"; };
 		F541217F2C37F86A0079DECF /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		F58679A02C3E6A2D0049B655 /* collision.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collision.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				F513B98D2C2D32C000FC983B /* Assets.xcassets */,
 				F513B98F2C2D32C000FC983B /* LaunchScreen.storyboard */,
 				F541217B2C3524A20079DECF /* bgsound.mp3 */,
+				F58679A02C3E6A2D0049B655 /* collision.mp3 */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				F541217A2C33FF6A0079DECF /* GameScene.sks in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 				F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */,
+				F58679A12C3E6A2D0049B655 /* collision.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
