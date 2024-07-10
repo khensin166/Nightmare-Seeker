@@ -1,6 +1,9 @@
 import SpriteKit
 import GameplayKit
 import CoreMotion
+import AudioToolbox
+import CoreHaptics
+import AVFoundation
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -13,12 +16,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var score: Int = 0
     var passChair: Int = 0
     
+    var hapticEngine: CHHapticEngine?
+    var audioPlayer: AVAudioPlayer?
+    
+    
     let xPosition = [90, 0, -90]
     
-/*  
-    Struktur PhysicsCategories digunakan untuk mendefinisikan kategori fisika menggunakan bitmask,
-    yang memungkinkan pengaturan interaksi dan deteksi kontak antara objek dalam permainan
-*/
+    // Structure for physics categories
     struct PhysicsCategories {
         static let none: UInt32 = 0
         static let character: UInt32 = 0x1 << 0
@@ -70,12 +74,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         startAccelerometer()
         
         repeatedlySpawnKursi1()
+        
+        // Prepare haptics
+        prepareHaptics()
+        
+        // Load the collision sound
+        prepareCollisionSound()
+       
     }
     
     func repeatedlySpawnKursi1() {
         let spawnAction = SKAction.run {
-                    self.spawnChair()
-                }
+            self.spawnChair()
+        }
                 
         let waitAction = SKAction.wait(forDuration: TimeInterval.random(in: 3...6)) // Durasi acak antara 3 hingga 6 detik
                 
@@ -104,7 +115,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func moveChair(node: SKNode) {
-        let duration = TimeInterval.random(in: 6...10) // Durasi acak antara 2 hingga 5 detik untuk variasi kecepatan
+        let duration = TimeInterval.random(in: 6...10) // Durasi acak antara 6 hingga 10 detik untuk variasi kecepatan
         let moveDownAction = SKAction.moveTo(y: -700, duration: duration)
                 
         let removeNodeAction = SKAction.run {
@@ -157,6 +168,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let collision: UInt32 = contact.bodyA.categoryBitMask | contact.bodyB.categoryBitMask
         
         if collision == (PhysicsCategories.character | PhysicsCategories.kursi) {
+            playHaptic()
+            playCollisionSound()
             showGameOver()
         }
     }
@@ -171,4 +184,47 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             view?.presentScene(gameOverScene, transition: transition)
         }
     }
-}
+    
+    func prepareHaptics() {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+
+        do {
+            hapticEngine = try CHHapticEngine()
+            try hapticEngine?.start()
+        } catch {
+            print("There was an error creating the haptic engine: \(error.localizedDescription)")
+        }
+    }
+
+    func playHaptic() {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+
+        let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1.0)
+        let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0)
+
+        let event = CHHapticEvent(eventType: .hapticTransient, parameters: [sharpness, intensity], relativeTime: 0)
+
+        do {
+            let pattern = try CHHapticPattern(events: [event], parameters: [])
+            let player = try hapticEngine?.makePlayer(with: pattern)
+            try player?.start(atTime: CHHapticTimeImmediate)
+        } catch {
+            print("Failed to play haptic pattern: \(error.localizedDescription)")
+        }
+    }
+    
+    func prepareCollisionSound() {
+            if let soundURL = Bundle.main.url(forResource: "collision", withExtension: "mp3") {
+                do {
+                    audioPlayer = try AVAudioPlayer(contentsOf: soundURL)
+                    audioPlayer?.prepareToPlay()
+                } catch {
+                    print("Failed to load collision sound: \(error.localizedDescription)")
+                }
+            }
+        }
+
+        func playCollisionSound() {
+            audioPlayer?.play()
+        }
+    }
