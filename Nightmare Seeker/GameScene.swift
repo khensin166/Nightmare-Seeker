@@ -179,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func updateScore() {
         scoreLabel.text = "Score: \(score)"
     }
-    
+//    test
     func showGameOver() {
         if let gameOverScene = SKScene(fileNamed: "GameOverScene") {
             let transition = SKTransition.fade(withDuration: 1.0)
