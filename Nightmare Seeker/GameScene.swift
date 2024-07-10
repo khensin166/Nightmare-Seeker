@@ -46,10 +46,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(character)
         }
         
-        let miniCharacterSize = CGSize(width: character.size.width * 0.8, height: character.size.height * 0.8)
-        
-        // Kecilkan physic character
-        character.size = miniCharacterSize
+//        let miniCharacterSize = CGSize(width: character.size.width * 0.8, height: character.size.height * 0.8)
+//        
+//        // Kecilkan physic character
+//        character.size = miniCharacterSize
         
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
@@ -62,9 +62,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Buat label skor
         scoreLabel = SKLabelNode(fontNamed: "Arial")
-        scoreLabel.fontSize = 20
+        scoreLabel.fontSize = 40
         scoreLabel.fontColor = SKColor.white
-        scoreLabel.position = CGPoint(x: frame.minX + 20, y: frame.maxY - 40)
+        scoreLabel.position = CGPoint(x: frame.minX + 100, y: frame.maxY - 80)
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.zPosition = 100
         scoreLabel.text = "Score: 0"
@@ -149,19 +149,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func updatePositionWith(acceleration: CMAcceleration) {
         let threshold: Double = 0.02
-        
-        // Jika perubahan pada akselerometer kurang dari ambang batas, abaikan perubahan
-        guard abs(acceleration.x) > threshold else { return }
-        
-        let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
-        let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width // Batas posisi X agar tidak keluar dari layar
-        
-        let newX = character.position.x + CGFloat(acceleration.x * moveSpeed)
-        let adjustedX = max(-maxXPosition, min(maxXPosition, newX))
-        
-        let bgDarkMoveAmount = character.position.x - adjustedX
-        bgDark.position.x -= bgDarkMoveAmount
-        character.position.x = adjustedX
+            
+            // Jika perubahan pada akselerometer kurang dari ambang batas, abaikan perubahan
+            guard abs(acceleration.x) > threshold else { return }
+            
+            let moveSpeed: CGFloat = 100.0 // Kecepatan gerakan, sesuaikan dengan kebutuhan
+            let maxXPosition: CGFloat = frame.size.width / 2 - character.size.width * 2 // Batas posisi X agar tidak keluar dari layar
+            
+            let newX = character.position.x + CGFloat(acceleration.x * moveSpeed)
+            let adjustedX = max(-maxXPosition, min(maxXPosition, newX))
+            
+            // Adjust bgDark position accordingly
+            let bgDarkMoveAmount = character.position.x - adjustedX
+            bgDark.position.x -= bgDarkMoveAmount
+            
+            character.position.x = adjustedX
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
