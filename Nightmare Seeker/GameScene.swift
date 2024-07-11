@@ -11,6 +11,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var character: SKSpriteNode!
     var bgDark: SKSpriteNode!
     var chair: SKSpriteNode!
+    var startGameCounter: SKSpriteNode!
+    
     var motionManager: CMMotionManager!
     var scoreLabel: SKLabelNode!
     var score: Int = 0
@@ -33,23 +35,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         
         chair = self.childNode(withName: "//kursi1") as? SKSpriteNode
-        
         // Ambil node "character" dari sks atau buat manual
         bgDark = self.childNode(withName: "//bgDark") as? SKSpriteNode
-        bgDark.zPosition = 5 // Pastikan bgDark berada di depan kursi
+         // Pastikan bgDark berada di depan kursi
+        character = self.childNode(withName: "//character") as? SKSpriteNode
         
-        if let existingChar = self.childNode(withName: "//character") as? SKSpriteNode {
-            character = existingChar
-        } else {
-            character = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
-            character.zPosition = 10 // Pastikan ini berada di depan bg
-            addChild(character)
-        }
-        
-//        let miniCharacterSize = CGSize(width: character.size.width * 0.8, height: character.size.height * 0.8)
-//        
-//        // Kecilkan physic character
-//        character.size = miniCharacterSize
+        startGameCounter = self.childNode(withName: "//startGameCounter") as? SKSpriteNode
         
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
@@ -64,11 +55,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.fontSize = 40
         scoreLabel.fontColor = SKColor.white
-        scoreLabel.position = CGPoint(x: frame.minX + 100, y: frame.maxY - 80)
+        scoreLabel.position = CGPoint(x: frame.minX + 130, y: frame.maxY - 150)
         scoreLabel.horizontalAlignmentMode = .left
         scoreLabel.zPosition = 100
         scoreLabel.text = "Score: 0"
         addChild(scoreLabel)
+        
+        // Inisialisasi motionManager
+//      motionManager = CMMotionManager()
+//      motionManager.accelerometerUpdateInterval = 0.1
+        
+        startGameCountDown()
         
         // Mulai membaca data accelerometer
         startAccelerometer()
@@ -81,6 +78,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Load the collision sound
         prepareCollisionSound()
        
+    }
+    
+    func startGameCountDown() {
+        // Pause all nodes except startGameCounter
+                for node in self.children {
+                    if node != startGameCounter {
+                        node.isPaused = true
+//                        self.stopAccelerometer()
+                    }
+                }
+                
+                let countdown = SKAction.sequence([
+                    SKAction.run { self.startGameCounter.isHidden = false },
+                    SKAction.wait(forDuration: 2.5),
+                    SKAction.run {
+                        self.startGameCounter.removeFromParent()
+                        for node in self.children {
+                            node.isPaused = false
+//                            self.startAccelerometer()
+                        }
+                    }
+                ])
+                
+                startGameCounter.run(countdown)
     }
     
     func repeatedlySpawnKursi1() {
@@ -129,8 +150,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startAccelerometer() {
-        motionManager = CMMotionManager()
-        motionManager.accelerometerUpdateInterval = 0.1
+        if motionManager == nil {
+            motionManager = CMMotionManager()
+            motionManager.accelerometerUpdateInterval = 0.1
+        }
         
         guard motionManager.isAccelerometerAvailable else {
             print("Accelerometer is not available")
@@ -146,6 +169,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.updatePositionWith(acceleration: acceleration)
         }
     }
+
+    
+    func stopAccelerometer() {
+        motionManager.stopAccelerometerUpdates()
+    }
+
     
     func updatePositionWith(acceleration: CMAcceleration) {
         let threshold: Double = 0.02
@@ -182,10 +211,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //    test
     func showGameOver() {
         if let gameOverScene = SKScene(fileNamed: "GameOverScene") {
-            let transition = SKTransition.fade(withDuration: 1.0)
+            let transition = SKTransition.fade(withDuration: 3.0)
             view?.presentScene(gameOverScene, transition: transition)
+            
+            NotificationCenter.default.post(name: NSNotification.Name("GameOver"), object: nil, userInfo: ["score": score])
         }
     }
+    
     
     func prepareHaptics() {
         guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
