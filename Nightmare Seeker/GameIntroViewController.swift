@@ -2,21 +2,28 @@
 //  GameIntroViewController.swift
 //  Nightmare Seeker
 //
-//  Created by Foundation-014 on 01/07/24.
+//  Created by Foundation-014 on 10/07/24.
 //
 
 import UIKit
+import SpriteKit
 
 class GameIntroViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.setHidesBackButton(true, animated: true)
 
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func goToGame(_ sender: Any) {
+            if let gameplay = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
+                navigationController?.pushViewController(gameplay, animated: true)
+            } else {
+                print("GameViewController not found")
+            }
+        }
+    
     /*
     // MARK: - Navigation
 

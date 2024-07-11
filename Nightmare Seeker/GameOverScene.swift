@@ -32,6 +32,8 @@ class GameOverScene: SKScene {
             
             let transition = SKTransition.doorway(withDuration: 1)
             view?.presentScene(scene, transition: transition)
+            
+            NotificationCenter.default.post(name: NSNotification.Name("GameRestart"), object: nil)
         }
     }
 }
