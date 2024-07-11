@@ -11,6 +11,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var character: SKSpriteNode!
     var bgDark: SKSpriteNode!
     var chair: SKSpriteNode!
+    var startGameCounter: SKSpriteNode!
+    
     var motionManager: CMMotionManager!
     var scoreLabel: SKLabelNode!
     var score: Int = 0
@@ -38,10 +40,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
          // Pastikan bgDark berada di depan kursi
         character = self.childNode(withName: "//character") as? SKSpriteNode
         
-//        let miniCharacterSize = CGSize(width: character.size.width * 0.8, height: character.size.height * 0.8)
-//        
-//        // Kecilkan physic character
-//        character.size = miniCharacterSize
+        startGameCounter = self.childNode(withName: "//startGameCounter") as? SKSpriteNode
         
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
@@ -62,6 +61,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "Score: 0"
         addChild(scoreLabel)
         
+        // Inisialisasi motionManager
+//      motionManager = CMMotionManager()
+//      motionManager.accelerometerUpdateInterval = 0.1
+        
+        startGameCountDown()
+        
         // Mulai membaca data accelerometer
         startAccelerometer()
         
@@ -73,6 +78,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Load the collision sound
         prepareCollisionSound()
        
+    }
+    
+    func startGameCountDown() {
+        // Pause all nodes except startGameCounter
+                for node in self.children {
+                    if node != startGameCounter {
+                        node.isPaused = true
+//                        self.stopAccelerometer()
+                    }
+                }
+                
+                let countdown = SKAction.sequence([
+                    SKAction.run { self.startGameCounter.isHidden = false },
+                    SKAction.wait(forDuration: 2.5),
+                    SKAction.run {
+                        self.startGameCounter.removeFromParent()
+                        for node in self.children {
+                            node.isPaused = false
+//                            self.startAccelerometer()
+                        }
+                    }
+                ])
+                
+                startGameCounter.run(countdown)
     }
     
     func repeatedlySpawnKursi1() {
@@ -185,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let transition = SKTransition.fade(withDuration: 3.0)
             view?.presentScene(gameOverScene, transition: transition)
             
-            NotificationCenter.default.post(name: NSNotification.Name("GameOver"), object: nil)
+            NotificationCenter.default.post(name: NSNotification.Name("GameOver"), object: nil, userInfo: ["score": score])
         }
     }
     

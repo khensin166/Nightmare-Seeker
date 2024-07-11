@@ -26,8 +26,7 @@ class GameViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(showPauseButton), name: NSNotification.Name("GameRestart"), object: nil)
         
-        
-        
+        NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: NSNotification.Name("GoHome"), object: nil)
         
         
         // Hide the back button
@@ -75,12 +74,7 @@ class GameViewController: UIViewController {
                 }
     }
     @IBAction func backHome(_ sender: Any) {
-        /*navigationController?.popViewController(animated: true)*/
-        if let gameplay = storyboard?.instantiateViewController(withIdentifier: "MainMenuViewController") as? MainMenuViewController {
-                    UIApplication.shared.keyWindow?.rootViewController = UINavigationController(rootViewController: gameplay)
-                } else {
-                    print("MainMenuViewController not found")
-                }
+        goHome()
     }
     
     @objc func hidePauseButton() {
@@ -90,5 +84,13 @@ class GameViewController: UIViewController {
     @objc func showPauseButton(){
         pauseButton.isHidden = false
     }
+    
+    @objc func goHome() {
+            if let gameplay = storyboard?.instantiateViewController(withIdentifier: "MainMenuViewController") as? MainMenuViewController {
+                UIApplication.shared.keyWindow?.rootViewController = UINavigationController(rootViewController: gameplay)
+            } else {
+                print("MainMenuViewController not found")
+            }
+        }
     
 }
