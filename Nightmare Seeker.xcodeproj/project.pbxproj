@@ -22,6 +22,7 @@
 		F54121802C37F86A0079DECF /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F541217F2C37F86A0079DECF /* GameOverScene.sks */; };
 		F58679A12C3E6A2D0049B655 /* collision.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F58679A02C3E6A2D0049B655 /* collision.mp3 */; };
 		F58679A32C3EF07D0049B655 /* GameIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58679A22C3EF07D0049B655 /* GameIntroViewController.swift */; };
+		F5932BEC2C41122F00301519 /* suarahantu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5932BEB2C41122F00301519 /* suarahantu.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,9 @@
 		F541217F2C37F86A0079DECF /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		F58679A02C3E6A2D0049B655 /* collision.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collision.mp3; sourceTree = "<group>"; };
 		F58679A22C3EF07D0049B655 /* GameIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameIntroViewController.swift; sourceTree = "<group>"; };
+		F5932BEB2C41122F00301519 /* suarahantu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = suarahantu.mp3; sourceTree = "<group>"; };
+		F5932BED2C4122DC00301519 /* rogerFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rogerFont.otf; sourceTree = "<group>"; };
+		F5932BEE2C41231A00301519 /* Nightmare-Seeker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Nightmare-Seeker-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,7 @@
 		F513B97F2C2D32BF00FC983B /* Nightmare Seeker */ = {
 			isa = PBXGroup;
 			children = (
+				F5932BEE2C41231A00301519 /* Nightmare-Seeker-Info.plist */,
 				F513B9802C2D32BF00FC983B /* AppDelegate.swift */,
 				F513B9822C2D32BF00FC983B /* GameScene.sks */,
 				F541217F2C37F86A0079DECF /* GameOverScene.sks */,
@@ -88,6 +93,8 @@
 				F513B98F2C2D32C000FC983B /* LaunchScreen.storyboard */,
 				F541217B2C3524A20079DECF /* bgsound.mp3 */,
 				F58679A02C3E6A2D0049B655 /* collision.mp3 */,
+				F5932BEB2C41122F00301519 /* suarahantu.mp3 */,
+				F5932BED2C4122DC00301519 /* rogerFont.otf */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -154,6 +161,7 @@
 				F513B98C2C2D32BF00FC983B /* Base in Resources */,
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
 				850ED9A32C3300D20030B0AB /* Actions.sks in Resources */,
+				F5932BEC2C41122F00301519 /* suarahantu.mp3 in Resources */,
 				F541217A2C33FF6A0079DECF /* GameScene.sks in Resources */,
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 				F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */,
@@ -328,6 +336,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Nightmare-Seeker-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -355,6 +364,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Nightmare-Seeker-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

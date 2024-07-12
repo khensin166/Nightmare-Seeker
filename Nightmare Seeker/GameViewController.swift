@@ -57,7 +57,7 @@ class GameViewController: UIViewController {
                     scene.stopAccelerometer()  // Stop accelerometer updates
                     scoreLabel.text = "Your Score: \(scene.score)"
                     modalViews.isHidden = false
-            hidePauseButton()
+                    hidePauseButton()
             
 //            scene.score
                 }
