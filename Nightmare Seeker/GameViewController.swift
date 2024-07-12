@@ -28,7 +28,6 @@ class GameViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(goHome), name: NSNotification.Name("GoHome"), object: nil)
         
-        
         // Hide the back button
         self.navigationItem.setHidesBackButton(true, animated: true)
         
@@ -60,7 +59,7 @@ class GameViewController: UIViewController {
                     modalViews.isHidden = false
             hidePauseButton()
             
-            scene.score
+//            scene.score
                 }
     }
     
@@ -69,8 +68,7 @@ class GameViewController: UIViewController {
                     scene.isPaused = false
                     scene.startAccelerometer()
                     modalViews.isHidden = true
-            
-            showPauseButton()
+                    showPauseButton()
                 }
     }
     @IBAction func backHome(_ sender: Any) {

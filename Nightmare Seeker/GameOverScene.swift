@@ -23,7 +23,7 @@ class GameOverScene: SKScene {
         homeLabel = self.childNode(withName: "//homeLabel") as? SKLabelNode
         
         // Setup observer for game over notification
-                NotificationCenter.default.addObserver(self, selector: #selector(handleGameOver(notification:)), name: NSNotification.Name("GameOver"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleGameOver(notification:)), name: NSNotification.Name("GameOver"), object: nil)
     }
     
     @objc func handleGameOver(notification: NSNotification) {
@@ -48,8 +48,9 @@ class GameOverScene: SKScene {
     }
     
     func restartGame() {
-        if let scene = SKScene(fileNamed: "GameScene") {
+        if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
             scene.scaleMode = .aspectFill
+            scene.isPaused = true
             
             let transition = SKTransition.doorway(withDuration: 1)
             view?.presentScene(scene, transition: transition)

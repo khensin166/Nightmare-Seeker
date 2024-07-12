@@ -10,28 +10,37 @@ import SpriteKit
 
 class GameIntroViewController: UIViewController {
 
+    @IBOutlet weak var startButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // Ensure button is connected and not nil
+        guard startButton != nil else {
+            print("Error: startButton outlet is not connected.")
+            return
+        }
+        
+        // Start the blinking animation
+        startBlinking()
     }
     
     @IBAction func goToGame(_ sender: Any) {
-            if let gameplay = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
-                navigationController?.pushViewController(gameplay, animated: true)
-            } else {
-                print("GameViewController not found")
-            }
+        if let gameplay = storyboard?.instantiateViewController(withIdentifier: "GameViewController") as? GameViewController {
+            navigationController?.pushViewController(gameplay, animated: true)
+        } else {
+            print("GameViewController not found")
         }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
     }
-    */
-
+    
+    // Function to start blinking animation
+    func startBlinking() {
+        let animation = CABasicAnimation(keyPath: "opacity")
+        animation.fromValue = 1.0
+        animation.toValue = 0.0
+        animation.duration = 0.5
+        animation.repeatCount = .infinity
+        animation.autoreverses = true
+        startButton.layer.add(animation, forKey: "blinkAnimation")
+    }
 }

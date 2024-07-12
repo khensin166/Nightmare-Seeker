@@ -12,6 +12,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var bgDark: SKSpriteNode!
     var chair: SKSpriteNode!
     var startGameCounter: SKSpriteNode!
+    var road: SKSpriteNode!
+    
     
     var motionManager: CMMotionManager!
     var scoreLabel: SKLabelNode!
@@ -20,7 +22,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var hapticEngine: CHHapticEngine?
     var audioPlayer: AVAudioPlayer?
-    
     
     let xPosition = [90, 0, -90]
     
@@ -42,6 +43,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         startGameCounter = self.childNode(withName: "//startGameCounter") as? SKSpriteNode
         
+        road = self.childNode(withName: "//road") as? SKSpriteNode
+        
+        
+        // Debug prints
+            if chair == nil {
+                print("Error: Chair node not found!")
+            }
+            if bgDark == nil {
+                print("Error: bgDark node not found!")
+            }
+            if character == nil {
+                print("Error: Character node not found!")
+            }
+            if startGameCounter == nil {
+                print("Error: Start Game Counter node not found!")
+            }
+
+            guard let character = character else {
+                fatalError("Character node is nil!")
+            }
+        
         character.physicsBody = SKPhysicsBody(rectangleOf: character.size)
         character.physicsBody?.affectedByGravity = false
         character.physicsBody?.allowsRotation = false
@@ -61,14 +83,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "Score: 0"
         addChild(scoreLabel)
         
-        // Inisialisasi motionManager
-//      motionManager = CMMotionManager()
-//      motionManager.accelerometerUpdateInterval = 0.1
-        
         startGameCountDown()
-        
-        // Mulai membaca data accelerometer
-        startAccelerometer()
         
         repeatedlySpawnKursi1()
         
@@ -77,17 +92,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // Load the collision sound
         prepareCollisionSound()
-       
     }
     
     func startGameCountDown() {
         // Pause all nodes except startGameCounter
                 for node in self.children {
                     if node != startGameCounter {
+//                        print("\(node.name) is paused!")
                         node.isPaused = true
-//                        self.stopAccelerometer()
+                        node.removeAllActions()
                     }
                 }
+                // Stop accelerometer updates
+                stopAccelerometer()
                 
                 let countdown = SKAction.sequence([
                     SKAction.run { self.startGameCounter.isHidden = false },
@@ -96,13 +113,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         self.startGameCounter.removeFromParent()
                         for node in self.children {
                             node.isPaused = false
-//                            self.startAccelerometer()
                         }
+                        // Restart accelerometer updates
+                        self.startAccelerometer()
+                        self.animateTextureChar()
+                        self.animateTextureRoad()
                     }
                 ])
                 
                 startGameCounter.run(countdown)
     }
+    
+//    animated character walk programmatically
+    func animateTextureChar() {
+        let textures = [SKTexture(imageNamed: "char1"), SKTexture(imageNamed: "char2"), SKTexture(imageNamed: "char3"), SKTexture(imageNamed: "char4") ]
+        let animateCharacter = SKAction.animate(with: textures, timePerFrame: 0.25)
+        let repeatAnimation = SKAction.repeatForever(animateCharacter)
+        
+        character.run(repeatAnimation)
+    }
+    
+//    animated texture road programmatically
+    func animateTextureRoad() {
+        let textures = [SKTexture(imageNamed: "bgGame1"), SKTexture(imageNamed: "bgGame2"), SKTexture(imageNamed: "bgGame3"), SKTexture(imageNamed: "bgGame4") ]
+        let animateRoad = SKAction.animate(with: textures, timePerFrame: 0.25)
+        let repeatAnimation = SKAction.repeatForever(animateRoad)
+        
+        road.run(repeatAnimation)
+    }
+    
     
     func repeatedlySpawnKursi1() {
         let spawnAction = SKAction.run {
@@ -172,8 +211,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 
     
     func stopAccelerometer() {
-        motionManager.stopAccelerometerUpdates()
+        if let motionManager = motionManager, motionManager.isAccelerometerActive {
+            motionManager.stopAccelerometerUpdates()
+        }
     }
+
 
     
     func updatePositionWith(acceleration: CMAcceleration) {
@@ -214,6 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let transition = SKTransition.fade(withDuration: 3.0)
             view?.presentScene(gameOverScene, transition: transition)
             
+            self.stopAccelerometer()
             NotificationCenter.default.post(name: NSNotification.Name("GameOver"), object: nil, userInfo: ["score": score])
         }
     }

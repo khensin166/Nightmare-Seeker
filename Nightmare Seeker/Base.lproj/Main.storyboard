@@ -89,11 +89,21 @@
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyY-2N-Hha">
+                            <rect key="frame" x="84" y="23" width="148" height="28"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABL-Yu-vzH">
-                            <rect key="frame" x="111" y="124" width="95" height="35"/>
+                            <rect key="frame" x="114" y="129" width="88" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="filled">
+                                <backgroundConfiguration key="background" strokeWidth="2" strokeOutset="3">
+                                    <color key="strokeColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </backgroundConfiguration>
                                 <attributedString key="attributedTitle">
                                     <fragment content="OK">
                                         <attributes>
@@ -109,13 +119,6 @@
                                 <segue destination="fYz-cc-I2h" kind="show" id="jih-vs-Xgj"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Username" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZyY-2N-Hha">
-                            <rect key="frame" x="84" y="23" width="148" height="28"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="Mow-FY-tOI"/>
                     <color key="backgroundColor" systemColor="systemGray3Color"/>
@@ -245,7 +248,7 @@ You'll need to overcome various obstacles while staying calm and focused to succ
                                                         <color key="baseBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <action selector="goToGame:" destination="fYz-cc-I2h" eventType="touchUpInside" id="Ayq-fz-i4H"/>
+                                                        <segue destination="tZ4-8P-z7G" kind="show" id="Od8-ZJ-PNO"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -365,7 +368,37 @@ You'll need to overcome various obstacles while staying calm and focused to succ
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9f-6y-MQl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4852.6717557251905" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="5683" y="4"/>
+        </scene>
+        <!--Game Intro View Controller-->
+        <scene sceneID="rNt-nE-QlY">
+            <objects>
+                <viewController id="tZ4-8P-z7G" customClass="GameIntroViewController" customModule="Nightmare_Seeker" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yd0-OM-kEF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geT-dw-HuU">
+                                <rect key="frame" x="138" y="539" width="116" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Tap To Start"/>
+                                <connections>
+                                    <segue destination="c6o-IT-tyo" kind="show" id="U3C-LZ-4nX"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="X6Z-MH-1no"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="0jP-1e-whx"/>
+                    <connections>
+                        <outlet property="startButton" destination="geT-dw-HuU" id="LOJ-3b-gEe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jfy-l2-sY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4744" y="4"/>
         </scene>
     </scenes>
     <resources>
