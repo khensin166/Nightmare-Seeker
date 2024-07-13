@@ -1,7 +1,7 @@
 
 # Develop Nightmare Seeker using SpriteKit
 
-Repositori ini berisi sourcode game Nightmare Seeker yang dibuat dengan teknologi berbasis IOS - selama mengikuti program Foundation di Apple Developer Academy @Infinite Learning, Batam, Indonesia
+Repositori ini berisi source code game Nightmare Seeker yang dibuat dengan teknologi berbasis IOS - selama mengikuti program Foundation di Apple Developer Academy @Infinite Learning, Batam, Indonesia
 
 ## Run Locally
 
