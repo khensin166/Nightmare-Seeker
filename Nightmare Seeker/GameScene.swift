@@ -131,7 +131,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     //    animated character walk programmatically
         func animateTextureChar() {
             let textures = [SKTexture(imageNamed: "char1"), SKTexture(imageNamed: "char2"), SKTexture(imageNamed: "char3"), SKTexture(imageNamed: "char4") ]
-            let animateCharacter = SKAction.animate(with: textures, timePerFrame: 0.25)
+            let animateCharacter = SKAction.animate(with: textures, timePerFrame: 0.5)
             let repeatAnimation = SKAction.repeatForever(animateCharacter)
             
             character.run(repeatAnimation)
@@ -139,8 +139,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     //    animated texture road programmatically
         func animateTextureRoad() {
-            let textures = [SKTexture(imageNamed: "bgGame1"), SKTexture(imageNamed: "bgGame2"), SKTexture(imageNamed: "bgGame3"), SKTexture(imageNamed: "bgGame4") ]
-            let animateRoad = SKAction.animate(with: textures, timePerFrame: 0.25)
+            let textures = [SKTexture(imageNamed: "road1"), SKTexture(imageNamed: "road2"), SKTexture(imageNamed: "road3"), SKTexture(imageNamed: "road4"),SKTexture(imageNamed: "road5"),SKTexture(imageNamed: "road6"),SKTexture(imageNamed: "road7"),SKTexture(imageNamed: "road8") ]
+            let animateRoad = SKAction.animate(with: textures, timePerFrame: 0.5)
             let repeatAnimation = SKAction.repeatForever(animateRoad)
             
             road.run(repeatAnimation)
@@ -329,7 +329,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func updatePositionWith(acceleration: CMAcceleration) {
-        let maxAccelerationX: Double = 1.0 // Ambang percepatan maksimum
+        let maxAccelerationX: Double = 0.6 // Ambang percepatan maksimum
         let maxMoveSpeed: CGFloat = 100.0 // Kecepatan maksimum per pergerakan
         
         // Mengukur percepatan mutlak

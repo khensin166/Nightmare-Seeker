@@ -74,6 +74,7 @@
                     <navigationItem key="navigationItem" id="nke-zq-8WT"/>
                     <connections>
                         <outlet property="blurView" destination="bEn-zD-WKZ" id="wnz-kr-Eya"/>
+                        <outlet property="highScoreLabel" destination="qQ8-np-pGa" id="DRi-Ag-we5"/>
                         <outlet property="popUpView" destination="6UN-xT-TPM" id="pZk-5j-X1r"/>
                         <outlet property="usernameField" destination="t8b-MK-bgP" id="1eh-p7-P5o"/>
                     </connections>

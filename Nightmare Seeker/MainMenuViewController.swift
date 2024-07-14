@@ -9,6 +9,8 @@ import UIKit
 
 class MainMenuViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet weak var highScoreLabel: UILabel!
+    
     @IBOutlet var blurView: UIVisualEffectView!
     
     @IBOutlet weak var muteButton: UIButton!
@@ -19,7 +21,7 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
     
     var isMute = false
     
-    
+    var highScore: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +49,18 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOutsidePopUp(_:)))
                 blurView.addGestureRecognizer(tapGesture)
+        
+        
+//        setup observer
+        NotificationCenter.default.addObserver(self, selector: #selector(handleHighScore(notification:)), name: NSNotification.Name("GameOver"), object: nil)
+    }
+    
+    @objc func handleHighScore(notification: NSNotification){
+        if let userInfo = notification.userInfo, let score = userInfo["score"] as? Int {
+            self.highScore = score
+//            display high score to screen
+            highScoreLabel.text = "High Score: \(highScore)"
+        }
     }
     
     @IBAction func buttonAction(_ sender: Any) {
@@ -109,6 +123,8 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
             textField.resignFirstResponder()
             return true
         }
+    
+    
     /*
     // MARK: - Navigation
 
