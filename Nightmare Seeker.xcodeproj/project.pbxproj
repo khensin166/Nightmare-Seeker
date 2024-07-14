@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		850ED9A32C3300D20030B0AB /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 850ED9A22C3300D20030B0AB /* Actions.sks */; };
+		E548D13F2C4418A000D1A8A3 /* GameFinishScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = E548D13E2C4418A000D1A8A3 /* GameFinishScene.sks */; };
+		E548D1412C441B3900D1A8A3 /* GameFinishScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E548D1402C441B3900D1A8A3 /* GameFinishScene.swift */; };
 		F50A927F2C3B82B50011BCE3 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50A927E2C3B82B50011BCE3 /* GameOverScene.swift */; };
 		F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9802C2D32BF00FC983B /* AppDelegate.swift */; };
 		F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9862C2D32BF00FC983B /* GameScene.swift */; };
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		850ED9A22C3300D20030B0AB /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		E548D13E2C4418A000D1A8A3 /* GameFinishScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameFinishScene.sks; sourceTree = "<group>"; };
+		E548D1402C441B3900D1A8A3 /* GameFinishScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFinishScene.swift; sourceTree = "<group>"; };
 		F50A927E2C3B82B50011BCE3 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
 		F513B97D2C2D32BF00FC983B /* Nightmare Seeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nightmare Seeker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F513B9802C2D32BF00FC983B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,10 +85,12 @@
 				F513B9802C2D32BF00FC983B /* AppDelegate.swift */,
 				F513B9822C2D32BF00FC983B /* GameScene.sks */,
 				F541217F2C37F86A0079DECF /* GameOverScene.sks */,
+				E548D13E2C4418A000D1A8A3 /* GameFinishScene.sks */,
 				850ED9A22C3300D20030B0AB /* Actions.sks */,
 				F54121742C32BAB40079DECF /* GameSettingViewController.swift */,
 				F513B9882C2D32BF00FC983B /* GameViewController.swift */,
 				F50A927E2C3B82B50011BCE3 /* GameOverScene.swift */,
+				E548D1402C441B3900D1A8A3 /* GameFinishScene.swift */,
 				F513B9862C2D32BF00FC983B /* GameScene.swift */,
 				F513B9972C2D340600FC983B /* MainMenuViewController.swift */,
 				F58679A22C3EF07D0049B655 /* GameIntroViewController.swift */,
@@ -166,6 +172,7 @@
 				F513B9912C2D32C000FC983B /* Base in Resources */,
 				F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */,
 				F58679A12C3E6A2D0049B655 /* collision.mp3 in Resources */,
+				E548D13F2C4418A000D1A8A3 /* GameFinishScene.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F513B9982C2D340600FC983B /* MainMenuViewController.swift in Sources */,
+				E548D1412C441B3900D1A8A3 /* GameFinishScene.swift in Sources */,
 				F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */,
 				F50A927F2C3B82B50011BCE3 /* GameOverScene.swift in Sources */,
 				F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */,
