@@ -49,6 +49,7 @@
 		F5932BEB2C41122F00301519 /* suarahantu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = suarahantu.mp3; sourceTree = "<group>"; };
 		F5932BED2C4122DC00301519 /* rogerFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rogerFont.otf; sourceTree = "<group>"; };
 		F5932BEE2C41231A00301519 /* Nightmare-Seeker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Nightmare-Seeker-Info.plist"; sourceTree = SOURCE_ROOT; };
+		F5ABBB272C443AFC005900ED /* CS Roger Inner.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CS Roger Inner.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +102,7 @@
 				F58679A02C3E6A2D0049B655 /* collision.mp3 */,
 				F5932BEB2C41122F00301519 /* suarahantu.mp3 */,
 				F5932BED2C4122DC00301519 /* rogerFont.otf */,
+				F5ABBB272C443AFC005900ED /* CS Roger Inner.otf */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -345,6 +347,7 @@
 				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nightmare-Seeker-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -373,6 +376,7 @@
 				DEVELOPMENT_TEAM = RJ8AXD7D5Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nightmare-Seeker-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

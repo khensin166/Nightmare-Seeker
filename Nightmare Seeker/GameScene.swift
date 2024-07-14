@@ -139,7 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     //    animated texture road programmatically
         func animateTextureRoad() {
-            let textures = [SKTexture(imageNamed: "road1"), SKTexture(imageNamed: "road2"), SKTexture(imageNamed: "road3"), SKTexture(imageNamed: "road4"),SKTexture(imageNamed: "road5"),SKTexture(imageNamed: "road6"),SKTexture(imageNamed: "road7"),SKTexture(imageNamed: "road8") ]
+            let textures = [SKTexture(imageNamed: "road1"), SKTexture(imageNamed: "road2"), SKTexture(imageNamed: "road3"), SKTexture(imageNamed: "road4"),SKTexture(imageNamed: "road5"),SKTexture(imageNamed: "road6"),SKTexture(imageNamed: "road7"),SKTexture(imageNamed: "road8"),SKTexture(imageNamed: "road9"),SKTexture(imageNamed: "road10") ]
             let animateRoad = SKAction.animate(with: textures, timePerFrame: 0.5)
             let repeatAnimation = SKAction.repeatForever(animateRoad)
             
@@ -401,7 +401,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel.text = "Score: \(score)"
         
         // Periksa apakah skor mencapai 50
-        if score >= 50 {
+        if score >= 5 {
             showGameFinish()
         }
     }
