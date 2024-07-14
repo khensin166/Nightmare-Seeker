@@ -385,9 +385,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return sqrt(dx * dx + dy * dy)
     }
 
-    func updateScore() {
-        scoreLabel.text = "Score: \(score)"
-    }
+    
     
     func showGameOver() {
         if let gameOverScene = SKScene(fileNamed: "GameOverScene") {
@@ -396,6 +394,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             self.stopAccelerometer()
             NotificationCenter.default.post(name: NSNotification.Name("GameOver"), object: nil, userInfo: ["score": score])
+        }
+    }
+    
+    func updateScore() {
+        scoreLabel.text = "Score: \(score)"
+        
+        // Periksa apakah skor mencapai 50
+        if score >= 50 {
+            showGameFinish()
+        }
+    }
+
+    func showGameFinish() {
+        if let gameFinishScene = SKScene(fileNamed: "GameFinishScene") {
+            let transition = SKTransition.fade(withDuration: 3.0)
+            view?.presentScene(gameFinishScene, transition: transition)
+            
+            self.stopAccelerometer()
+            NotificationCenter.default.post(name: NSNotification.Name("GameFinish"), object: nil, userInfo: ["score": score])
         }
     }
     
