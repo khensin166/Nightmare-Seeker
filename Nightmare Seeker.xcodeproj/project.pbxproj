@@ -18,7 +18,6 @@
 		F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F513B98D2C2D32C000FC983B /* Assets.xcassets */; };
 		F513B9912C2D32C000FC983B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = F513B9902C2D32C000FC983B /* Base */; };
 		F513B9982C2D340600FC983B /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F513B9972C2D340600FC983B /* MainMenuViewController.swift */; };
-		F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54121742C32BAB40079DECF /* GameSettingViewController.swift */; };
 		F541217A2C33FF6A0079DECF /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F513B9822C2D32BF00FC983B /* GameScene.sks */; };
 		F541217C2C3524A20079DECF /* bgsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F541217B2C3524A20079DECF /* bgsound.mp3 */; };
 		F54121802C37F86A0079DECF /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = F541217F2C37F86A0079DECF /* GameOverScene.sks */; };
@@ -43,7 +42,6 @@
 		F513B98D2C2D32C000FC983B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F513B9902C2D32C000FC983B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F513B9972C2D340600FC983B /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		F54121742C32BAB40079DECF /* GameSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettingViewController.swift; sourceTree = "<group>"; };
 		F541217B2C3524A20079DECF /* bgsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bgsound.mp3; sourceTree = "<group>"; };
 		F541217F2C37F86A0079DECF /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
 		F58679A02C3E6A2D0049B655 /* collision.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = collision.mp3; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 				F541217F2C37F86A0079DECF /* GameOverScene.sks */,
 				E548D13E2C4418A000D1A8A3 /* GameFinishScene.sks */,
 				850ED9A22C3300D20030B0AB /* Actions.sks */,
-				F54121742C32BAB40079DECF /* GameSettingViewController.swift */,
 				F513B9882C2D32BF00FC983B /* GameViewController.swift */,
 				F50A927E2C3B82B50011BCE3 /* GameOverScene.swift */,
 				F5D05A922C44EB5300B5BC22 /* giftLoader.swift */,
@@ -197,7 +194,6 @@
 				F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */,
 				F50A927F2C3B82B50011BCE3 /* GameOverScene.swift in Sources */,
 				F5D05A932C44EB5300B5BC22 /* giftLoader.swift in Sources */,
-				F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */,
 				F58679A32C3EF07D0049B655 /* GameIntroViewController.swift in Sources */,
 				F513B9892C2D32BF00FC983B /* GameViewController.swift in Sources */,
 				F513B9812C2D32BF00FC983B /* AppDelegate.swift in Sources */,

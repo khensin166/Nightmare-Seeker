@@ -6,22 +6,28 @@
 //
 
 import UIKit
+import AVFoundation
 
 class MainMenuViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var highScoreLabel: UILabel!
     
     @IBOutlet var blurView: UIVisualEffectView!
-    
-    @IBOutlet weak var muteButton: UIButton!
+
     
     @IBOutlet weak var usernameField: UITextField!
     
     @IBOutlet var popUpView: UIView!
     
+    @IBOutlet weak var muteButton: UIButton!
     var isMute = false
     
     var highScore: Int = 0
+    
+    var playerVidio: AVPlayer?
+    //    cek music playet nya tadi ada dimana
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,6 +117,19 @@ class MainMenuViewController: UIViewController, UITextFieldDelegate {
         animateIn(desiredView: popUpView)
         usernameField.becomeFirstResponder()
     }
+    
+    @IBAction func changeMuteStatus(_ sender: Any) {
+       if !isMute {
+           muteButton.setImage(UIImage(systemName: "speaker.slash.fill"), for: .normal)
+        isMute = true
+           appDelegate.music?.stop()
+       } else {
+           muteButton.setImage(UIImage(systemName: "speaker.circle.fill"), for: .normal)
+           isMute = false
+           appDelegate.music?.play()
+       }
+    }
+    
     
     @objc func handleTapOutsidePopUp(_ sender: UITapGestureRecognizer) {
             if !popUpView.frame.contains(sender.location(in: self.view)) {
