@@ -11,12 +11,25 @@ import SpriteKit
 class GameIntroViewController: UIViewController {
 
     @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Ensure button is connected and not nil
-        guard startButton != nil else {
+        print("startButton: \(startButton)")
+        print("imageView: \(imageView)")
+        
+        // Ensure imageView is connected and not nil
+        guard let imageView = imageView else {
+            print("Error: imageView outlet is not connected.")
+            return
+        }
+        
+        let tiltGif = UIImage.gifImageWithName("tiltIntro")
+        imageView.image = tiltGif
+        
+        // Ensure startButton is connected and not nil
+        guard let startButton = startButton else {
             print("Error: startButton outlet is not connected.")
             return
         }
@@ -35,6 +48,11 @@ class GameIntroViewController: UIViewController {
     
     // Function to start blinking animation
     func startBlinking() {
+        guard let startButton = startButton else {
+            print("Error: startButton outlet is not connected for blinking animation.")
+            return
+        }
+        
         let animation = CABasicAnimation(keyPath: "opacity")
         animation.fromValue = 1.0
         animation.toValue = 0.0

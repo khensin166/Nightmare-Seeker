@@ -47,6 +47,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         hantu2 = self.childNode(withName: "//hantu2") as? SKSpriteNode
         
         bgDark = self.childNode(withName: "//bgDark") as? SKSpriteNode
+        
+//        scoreLabel = self.childNode(withName: "//scoreLabel") as? SKLabelNode
 //        bgDark.zPosition = 5
 
         startGameCounter = self.childNode(withName: "//startGameCounter") as? SKSpriteNode
@@ -84,10 +86,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scoreLabel = SKLabelNode(fontNamed: "Arial")
                 scoreLabel.fontSize = 40
                 scoreLabel.fontColor = SKColor.white
-                scoreLabel.position = CGPoint(x: frame.minX + 130, y: frame.maxY - 150)
+                scoreLabel.position = CGPoint(x: frame.minX + 170, y: frame.maxY - 160)
                 scoreLabel.horizontalAlignmentMode = .left
                 scoreLabel.zPosition = 100
-                scoreLabel.text = "Score: 0"
+                scoreLabel.text = ": 0"
                 addChild(scoreLabel)
         
         startGameCountDown()
@@ -346,7 +348,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let moveAmount = CGFloat(acceleration.x * maxMoveSpeed)
         
         // Batas-batas posisi karakter
-        let maxXPosition = frame.size.width / 2 - character.size.width * 2
+        let maxXPosition = (frame.size.width / 2 - character.size.width / 2) * 0.4
         let minXPosition = -maxXPosition
         
         // Memeriksa batas-batas posisi yang valid
@@ -398,7 +400,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func updateScore() {
-        scoreLabel.text = "Score: \(score)"
+        scoreLabel.text = ": \(score)"
         
         // Periksa apakah skor mencapai 50
         if score >= 5 {

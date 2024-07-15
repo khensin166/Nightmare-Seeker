@@ -17,10 +17,13 @@ class GameOverScene: SKScene {
     
     override func didMove(to view: SKView) {
         restartLabel = self.childNode(withName: "//restartLabel") as? SKLabelNode
+        restartLabel.fontName = "CS Roger Inner"
         
         scoreLabel = self.childNode(withName: "//scoreLabel") as? SKLabelNode
+        scoreLabel.fontName = "CS Roger Inner"
         
         homeLabel = self.childNode(withName: "//homeLabel") as? SKLabelNode
+        homeLabel.fontName = "CS Roger Inner"
         
         // Setup observer for game over notification
         NotificationCenter.default.addObserver(self, selector: #selector(handleGameOver(notification:)), name: NSNotification.Name("GameOver"), object: nil)
@@ -52,7 +55,7 @@ class GameOverScene: SKScene {
             scene.scaleMode = .aspectFill
             scene.isPaused = true
             
-            let transition = SKTransition.doorway(withDuration: 1)
+            let transition = SKTransition.fade(withDuration: 1)
             view?.presentScene(scene, transition: transition)
             
             NotificationCenter.default.post(name: NSNotification.Name("GameRestart"), object: nil)

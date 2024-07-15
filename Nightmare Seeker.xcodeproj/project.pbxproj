@@ -25,6 +25,8 @@
 		F58679A12C3E6A2D0049B655 /* collision.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F58679A02C3E6A2D0049B655 /* collision.mp3 */; };
 		F58679A32C3EF07D0049B655 /* GameIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F58679A22C3EF07D0049B655 /* GameIntroViewController.swift */; };
 		F5932BEC2C41122F00301519 /* suarahantu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F5932BEB2C41122F00301519 /* suarahantu.mp3 */; };
+		F5D05A912C44E9DB00B5BC22 /* tiltIntro.gif in Resources */ = {isa = PBXBuildFile; fileRef = F5D05A902C44E9DB00B5BC22 /* tiltIntro.gif */; };
+		F5D05A932C44EB5300B5BC22 /* giftLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D05A922C44EB5300B5BC22 /* giftLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		F5932BED2C4122DC00301519 /* rogerFont.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rogerFont.otf; sourceTree = "<group>"; };
 		F5932BEE2C41231A00301519 /* Nightmare-Seeker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Nightmare-Seeker-Info.plist"; sourceTree = SOURCE_ROOT; };
 		F5ABBB272C443AFC005900ED /* CS Roger Inner.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CS Roger Inner.otf"; sourceTree = "<group>"; };
+		F5D05A902C44E9DB00B5BC22 /* tiltIntro.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = tiltIntro.gif; sourceTree = "<group>"; };
+		F5D05A922C44EB5300B5BC22 /* giftLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = giftLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,7 @@
 				F54121742C32BAB40079DECF /* GameSettingViewController.swift */,
 				F513B9882C2D32BF00FC983B /* GameViewController.swift */,
 				F50A927E2C3B82B50011BCE3 /* GameOverScene.swift */,
+				F5D05A922C44EB5300B5BC22 /* giftLoader.swift */,
 				E548D1402C441B3900D1A8A3 /* GameFinishScene.swift */,
 				F513B9862C2D32BF00FC983B /* GameScene.swift */,
 				F513B9972C2D340600FC983B /* MainMenuViewController.swift */,
@@ -103,6 +108,7 @@
 				F5932BEB2C41122F00301519 /* suarahantu.mp3 */,
 				F5932BED2C4122DC00301519 /* rogerFont.otf */,
 				F5ABBB272C443AFC005900ED /* CS Roger Inner.otf */,
+				F5D05A902C44E9DB00B5BC22 /* tiltIntro.gif */,
 			);
 			path = "Nightmare Seeker";
 			sourceTree = "<group>";
@@ -165,6 +171,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5D05A912C44E9DB00B5BC22 /* tiltIntro.gif in Resources */,
 				F54121802C37F86A0079DECF /* GameOverScene.sks in Resources */,
 				F513B98C2C2D32BF00FC983B /* Base in Resources */,
 				F513B98E2C2D32C000FC983B /* Assets.xcassets in Resources */,
@@ -189,6 +196,7 @@
 				E548D1412C441B3900D1A8A3 /* GameFinishScene.swift in Sources */,
 				F513B9872C2D32BF00FC983B /* GameScene.swift in Sources */,
 				F50A927F2C3B82B50011BCE3 /* GameOverScene.swift in Sources */,
+				F5D05A932C44EB5300B5BC22 /* giftLoader.swift in Sources */,
 				F54121752C32BAB40079DECF /* GameSettingViewController.swift in Sources */,
 				F58679A32C3EF07D0049B655 /* GameIntroViewController.swift in Sources */,
 				F513B9892C2D32BF00FC983B /* GameViewController.swift in Sources */,

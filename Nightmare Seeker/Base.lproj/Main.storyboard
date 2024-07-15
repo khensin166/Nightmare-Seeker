@@ -395,18 +395,23 @@ You'll need to overcome various obstacles while staying calm and focused to succ
                                     <segue destination="c6o-IT-tyo" kind="show" id="U3C-LZ-4nX"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bTa-A9-oB9">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X6Z-MH-1no"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="0jP-1e-whx"/>
                     <connections>
+                        <outlet property="imageView" destination="bTa-A9-oB9" id="DEs-8I-z5u"/>
                         <outlet property="startButton" destination="geT-dw-HuU" id="LOJ-3b-gEe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jfy-l2-sY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4744" y="4"/>
+            <point key="canvasLocation" x="4742.7480916030536" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
