@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var road: SKSpriteNode!
     var startGameCounter: SKSpriteNode!
 
+    var isGhostActive: Bool = false
+    
     var audioPlayer: AVAudioPlayer?
     var ghostAudioPlayer: AVAudioPlayer?
     
@@ -216,7 +218,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             addChild(newHantu)
             
             let moveDownAction = SKAction.moveTo(y: -700, duration: TimeInterval.random(in: 6...10))
-            let removeAction = SKAction.removeFromParent()
+            let removeAction = SKAction.run {
+                newHantu.removeFromParent()
+                self.isGhostActive = false // Update the flag when ghost is removed
+            }
             let sequence = SKAction.sequence([moveDownAction, removeAction])
             newHantu.run(sequence)
             
@@ -239,70 +244,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let moveSideAction = SKAction.moveBy(x: CGFloat.random(in: -50...50), y: 0, duration: 0.5)
             let moveSequence = SKAction.sequence([moveSideAction, moveSideAction.reversed()])
             newHantu.run(SKAction.repeatForever(moveSequence))
+            
+            // Start the haptic feedback loop
+            isGhostActive = true
+            runHapticLoop()
         }
-
-               if chance <= 3 {
-                   guard let newHantu = hantu2?.copy() as? SKSpriteNode else { return }
-                   
-                   let randomX = xPosition[Int.random(in: 0...2)]
-                   newHantu.position = CGPoint(x: randomX, y: 700)
-                   newHantu.zPosition = 4
-                   
-                   newHantu.physicsBody = SKPhysicsBody(rectangleOf: newHantu.size)
-                   newHantu.physicsBody?.isDynamic = true
-                   newHantu.physicsBody?.affectedByGravity = false
-                   newHantu.physicsBody?.categoryBitMask = PhysicsCategories.hantu
-                   newHantu.physicsBody?.contactTestBitMask = PhysicsCategories.character
-                   newHantu.physicsBody?.collisionBitMask = PhysicsCategories.none
-                   
-                   newHantu.setScale(0.2) // Ukuran hantu diperkecil menjadi 0.2
-                   
-                   addChild(newHantu)
-                   
-                   let moveDownAction = SKAction.moveTo(y: -700, duration: TimeInterval.random(in: 6...10))
-                   let removeAction = SKAction.removeFromParent()
-                   let sequence = SKAction.sequence([moveDownAction, removeAction])
-                   newHantu.run(sequence)
-                   
-                   playGhostSound()
-                   
-                   flashScreen()
-                   
-                   // Tambahkan efek mendekat dan menakutkan
-                   let scaleUpAction = SKAction.scale(to: 1.5, duration: 1.0) // Perbesar ukuran hantu
-                   let moveToFrontAction = SKAction.move(to: CGPoint(x: frame.midX, y: frame.midY), duration: 1.0) // Pindahkan hantu ke tengah layar
-                   let changeZPosition = SKAction.run {
-                       newHantu.zPosition = 1000 // Tempatkan hantu di depan
-                   }
-                   
-                   let scarySequence = SKAction.group([scaleUpAction, moveToFrontAction, changeZPosition])
-                   
-                   // Efek getaran
-                   let shakeAction = SKAction.sequence([
-                       SKAction.moveBy(x: -10, y: 0, duration: 0.05),
-                       SKAction.moveBy(x: 20, y: 0, duration: 0.05),
-                       SKAction.moveBy(x: -10, y: 0, duration: 0.05),
-                   ])
-                   
-                   let repeatShake = SKAction.repeat(shakeAction, count: 5)
-                   
-                   let fullSequence = SKAction.sequence([scarySequence, repeatShake, SKAction.wait(forDuration: 0.5), removeAction])
-                   newHantu.run(fullSequence)
-                   
-                   // Blink action
-                   let blinkAction = SKAction.sequence([
-                       SKAction.fadeAlpha(to: 0.1, duration: 0.1),
-                       SKAction.wait(forDuration: 0.2),
-                       SKAction.fadeAlpha(to: 1.0, duration: 0.1)
-                   ])
-                   newHantu.run(SKAction.repeatForever(blinkAction))
-                   
-                   // Move side action
-                   let moveSideAction = SKAction.moveBy(x: CGFloat.random(in: -50...50), y: 0, duration: 0.5)
-                   let moveSequence = SKAction.sequence([moveSideAction, moveSideAction.reversed()])
-                   newHantu.run(SKAction.repeatForever(moveSequence))
-               }
     }
+    
+    func runHapticLoop() {
+        if isGhostActive {
+            playHaptic()
+            let waitAction = SKAction.wait(forDuration: 1.0) // Adjust the duration as needed
+            let checkAndRunAgainAction = SKAction.run { [weak self] in
+                self?.runHapticLoop()
+            }
+            let sequence = SKAction.sequence([waitAction, checkAndRunAgainAction])
+            run(sequence)
+        }
+    }
+
+
 
     func startAccelerometer() {
         motionManager = CMMotionManager()
@@ -435,7 +396,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1.0)
         let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0)
         
-        let event = CHHapticEvent(eventType: .hapticTransient, parameters: [sharpness, intensity], relativeTime: 0)
+        let event = CHHapticEvent(eventType: .hapticContinuous, parameters: [sharpness, intensity], relativeTime: 0, duration: 1.0)
         
         do {
             let pattern = try CHHapticPattern(events: [event], parameters: [])
@@ -445,6 +406,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             print("Failed to play haptic pattern: \(error.localizedDescription)")
         }
     }
+
     
     func prepareCollisionSound() {
         if let soundURL = Bundle.main.url(forResource: "collision", withExtension: "mp3") {
