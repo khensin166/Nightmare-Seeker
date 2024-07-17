@@ -1,3 +1,16 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+//
+//  GameFinishScene.swift
+//  Nightmare Seeker
+//
+//  Created by Foundation-009 on 11/07/24.
+//
+
+import Foundation
+=======
+>>>>>>> exaudi2
 import UIKit
 import SpriteKit
 
@@ -70,3 +83,7 @@ class GameFinishScene: SKScene {
     }
 }
 
+<<<<<<< HEAD
+=======
+>>>>>>> kenan2
+>>>>>>> exaudi2
